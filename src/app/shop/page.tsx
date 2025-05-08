@@ -1,5 +1,5 @@
 import Sidebar from '@/components/Sidebar';
-import Link from 'next/link'; // Import Link for external links too (optional, standard <a> is fine)
+// import Link from 'next/link'; // Import Link for external links too (optional, standard <a> is fine) Removed
 
 export default function ShopPage() {
   return (

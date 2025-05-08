@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Unbounded } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import ClientBootstrapLoader from "@/components/ClientBootstrapLoader";
 import "../styles/bootstrap.min.css";
@@ -8,6 +8,7 @@ import "../styles/modern-dark.css";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const unbounded = Unbounded({ subsets: ["latin"], weight: ["300", "400", "700"] });
 
 export const metadata: Metadata = {
   title: "santyago of the dreams",
@@ -22,11 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet" />
+        {/* Removed direct font links, will be handled by next/font */}
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} ${unbounded.className}`}>
         <Navbar />
         {children}
         <ClientBootstrapLoader />

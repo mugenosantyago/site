@@ -30,7 +30,7 @@ export default function HomePage() {
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
-                <p><small>SATURN'S REVENGE</small></p>
+                <p><small>SATURN&apos;S REVENGE</small></p>
                 <p><small>&nbsp; &nbsp;</small></p>
                 <div className="custom-block-numbers d-flex align-items-center">
                   <iframe
@@ -119,8 +119,8 @@ export default function HomePage() {
                     has been active in helping live events throughout California
                     as well as collaborating with many artists for different
                     audio and visual projects. He will return&nbsp; at the end
-                    of the year with his junior album "Saturn's
-                    Revenge".
+                    of the year with his junior album &quot;Saturn&apos;s
+                    Revenge&quot;.
                   </strong>
                   <span>&nbsp;</span>
                 </p>

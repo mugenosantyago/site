@@ -29,7 +29,6 @@ function DiscographyContent() {
   const [albums, setAlbums] = useState<AlbumItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentAlbum, setCurrentAlbum] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [activePlayerIndex, setActivePlayerIndex] = useState<number | null>(null);
 
@@ -48,7 +47,7 @@ function DiscographyContent() {
     }
     
     // Store the original callback if it exists
-    const originalCallback = window.onSpotifyWebPlaybackSDKReady;
+    // const originalCallback = window.onSpotifyWebPlaybackSDKReady;
 
     window.onSpotifyWebPlaybackSDKReady = () => {
       console.log('Spotify SDK is ready.');
@@ -123,9 +122,13 @@ function DiscographyContent() {
         setAccessToken(tokenData.access_token);
         // Clear code from URL
         window.history.replaceState({}, document.title, "/discography"); 
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Error fetching token:', err);
-        setError(`Error fetching token: ${err.message}`);
+        if (err instanceof Error) {
+          setError(`Error fetching token: ${err.message}`);
+        } else {
+          setError('An unknown error occurred while fetching the token.');
+        }
         setIsLoading(false);
       }
     };
@@ -192,7 +195,6 @@ function DiscographyContent() {
         if (!state) {
             setIsPlaying(false);
             setActivePlayerIndex(null);
-            setCurrentAlbum(null);
             return;
         }
         setIsPlaying(!state.paused);
@@ -256,9 +258,13 @@ function DiscographyContent() {
             return acc;
         }, []);
         setAlbums(uniqueAlbums || []); 
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Error fetching albums:', err);
-        setError(`Error fetching albums: ${err.message}`);
+        if (err instanceof Error) {
+          setError(`Error fetching albums: ${err.message}`);
+        } else {
+          setError('An unknown error occurred while fetching albums.');
+        }
       } finally {
         setIsLoading(false);
       }
@@ -318,18 +324,21 @@ function DiscographyContent() {
           }),
         });
         if (!res.ok && res.status !== 404) throw new Error(`Play API failed: ${res.statusText}`);
-        setCurrentAlbum(albumId);
         setIsPlaying(true);
         setActivePlayerIndex(index);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Playback error:', err);
-      setError(`Playback error: ${err.message}`);
-       if (err.message.includes('Unauthorized')) {
-            localStorage.removeItem('access_token');
-            setAccessToken(null);
-            setError('Authorization error. Please login again.');
+      if (err instanceof Error) {
+        setError(`Playback error: ${err.message}`);
+        if (err.message.includes('Unauthorized')) {
+          localStorage.removeItem('access_token');
+          setAccessToken(null);
+          setError('Authorization error. Please login again.');
         }
+      } else {
+        setError('An unknown playback error occurred.');
+      }
     }
   };
 
