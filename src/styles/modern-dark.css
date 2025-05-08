@@ -1,0 +1,168 @@
+/* modern-dark.css */
+
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  /* Use the Unbounded font linked in HTML */
+  font-family: 'Unbounded', sans-serif;
+}
+
+/* --- Navbar --- */
+.navbar {
+  background-color: #1f1f1f; /* Slightly lighter dark */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.navbar-brand {
+  color: #ffffff;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.navbar-brand:hover {
+  color: #cccccc;
+}
+
+/* --- Sidebar --- */
+#sidebarMenu {
+  background-color: #1f1f1f;
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-sticky {
+  padding-top: 1rem !important; /* Override Bootstrap if needed */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7); /* Lighter than default grey */
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #727272;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+  color: #ffffff;
+  background-color: #333333; /* Darker hover/active */
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+/* --- Main Content Wrapper --- */
+.main-wrapper {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+  border-left: 1px solid #333; /* Darker border */
+}
+
+.title-group h1, .title-group h2 {
+  color: #ffffff;
+}
+
+.title-group .text-muted {
+  color: #aaaaaa !important; /* Lighter muted text */
+}
+
+/* --- Custom Blocks --- */
+.custom-block {
+  background-color: #1f1f1f; /* Match sidebar/navbar */
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  border: 1px solid #333; /* Subtle border */
+}
+
+.custom-block h5, .custom-block h6 {
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.custom-block p,
+.custom-block small,
+.custom-block strong,
+.custom-block span {
+  color: #e0e0e0; /* Default light text */
+}
+
+.custom-block a {
+  color: #bb86fc; /* A modern purple accent */
+  text-decoration: none;
+}
+
+.custom-block a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Override Bootstrap's bg-white specifically */
+.custom-block.bg-white {
+  background-color: #1f1f1f !important;
+}
+
+/* Profile image adjustments if needed */
+.custom-block-profile-image {
+  border: 3px solid #333; /* Darker border for profile image */
+  max-width: 150px; /* Example size adjustment */
+  border-radius: 50%; /* Circular profile image */
+  margin: 0 auto; /* Center if needed */
+}
+
+/* Style for Discography album items */
+#album-players {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Responsive grid */
+  gap: 1rem;
+}
+
+.player-item {
+  position: relative;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  overflow: hidden; /* Ensure buttons stay within rounded corners */
+  border: 1px solid #333;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.player-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.player-item img.background-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* Square images */
+  object-fit: cover;
+}
+
+.player-item .button-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 10px;
+  filter: invert(1); /* Make SVG white */
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.player-item:hover .button-image {
+  opacity: 1;
+}
+
+/* Add more styles for a modern dark theme below */ 
