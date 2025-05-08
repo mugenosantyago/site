@@ -26,6 +26,7 @@ export default function HomePage() {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  className="responsive-video-iframe"
                 ></iframe>
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
@@ -41,6 +42,7 @@ export default function HomePage() {
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
+                    className="responsive-video-iframe"
                   ></iframe>
                   <span>&nbsp;</span>
                   <span>&nbsp;</span>
@@ -67,6 +69,7 @@ export default function HomePage() {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  className="responsive-video-iframe"
                 ></iframe>
               </div>
 
@@ -79,7 +82,7 @@ export default function HomePage() {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  className="mb-3"
+                  className="mb-3 responsive-video-iframe"
                 ></iframe>
                 <iframe
                   width="430"
@@ -89,6 +92,7 @@ export default function HomePage() {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  className="responsive-video-iframe"
                 ></iframe>
               </div>
             </div>
@@ -204,6 +208,7 @@ export default function HomePage() {
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
+                    className="responsive-video-iframe"
                   ></iframe>
                   <a href="#"> </a>
                   <a href="#"> </a>

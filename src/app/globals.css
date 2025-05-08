@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Responsive Video iFrames */
+.responsive-video-iframe {
+  width: 100%; /* Make iframe take full width of its container */
+  max-width: 100%; /* Ensure it doesn't overflow its container */
+  aspect-ratio: 16 / 9; /* Maintain a 16:9 aspect ratio */
+  height: auto; /* Allow height to adjust based on width and aspect-ratio, also fallback */
+  border: none; /* Remove default iframe border if any */
+}
