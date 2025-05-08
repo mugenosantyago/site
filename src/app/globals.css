@@ -33,3 +33,21 @@ body {
   height: auto; /* Allow height to adjust based on width and aspect-ratio, also fallback */
   border: none; /* Remove default iframe border if any */
 }
+
+/* Circular Image */
+.circular-image {
+  border-radius: 50%;
+  object-fit: cover; /* To ensure the image covers the area without distortion */
+  width: 150px; /* Example size, can be adjusted */
+  height: 150px; /* Example size, can be adjusted */
+  display: block; /* Helps with centering if needed */
+  margin: 0 auto 20px auto; /* Example margin: auto horizontal, 20px bottom */
+}
+
+/* Responsive HTML5 Video */
+.responsive-html-video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block; /* To remove extra space below if any */
+}

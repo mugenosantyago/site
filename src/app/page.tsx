@@ -8,6 +8,18 @@ export default function HomePage() {
         <Sidebar />
 
         <main className="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
+          {/* Dreamsickle Logo */}
+          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+            <Image
+              src="/images/@Dreamsickle_YumeKama.jpg"
+              alt="Dreamsickle Logo"
+              width={150} // Adjust as needed, should match CSS for .circular-image
+              height={150} // Adjust as needed, should match CSS for .circular-image
+              className="circular-image"
+              priority
+            />
+          </div>
+
           <div className="title-group mb-3">
             <h1 className="h2 mb-0">SANTYAGO OF THE DREAMS&nbsp; &nbsp;&nbsp;</h1>
             <small className="text-muted">夢幻のサンチャゴ&nbsp;</small>
@@ -214,6 +226,74 @@ export default function HomePage() {
                   <a href="#"> </a>
                 </div>
 
+            </div>
+          </div>
+
+          {/* New Images and Videos Section */}
+          <div className="row my-4">
+            <div className="col-12">
+              <h3 className="mb-4" style={{ textAlign: 'center' }}>Gallery & Videos</h3>
+              <div className="row">
+                {/* Image 1: Royce Danilo */}
+                <div className="col-md-6 col-lg-4 mb-4">
+                  <Image 
+                    src="/images/@9B81DEFB-A68F-4C65-9006-A5EC73D6DB20.jpg" 
+                    alt="Royce Danilo"
+                    width={500} 
+                    height={300} 
+                    layout="responsive" 
+                    objectFit="contain"
+                  />
+                </div>
+                {/* Image 2: Elijah Valentino */}
+                <div className="col-md-6 col-lg-4 mb-4">
+                  <Image 
+                    src="/images/@Elijah-Valentino,-Water-Fox.jpg" 
+                    alt="Elijah Valentino"
+                    width={500} 
+                    height={300} 
+                    layout="responsive" 
+                    objectFit="contain"
+                  />
+                </div>
+                {/* Image 3: John Laurel */}
+                <div className="col-md-6 col-lg-4 mb-4">
+                  <Image 
+                    src="/images/@JOHN-LAUREL,-LYNX-DOCTOR.jpg" 
+                    alt="John Laurel"
+                    width={500} 
+                    height={300} 
+                    layout="responsive" 
+                    objectFit="contain"
+                  />
+                </div>
+                {/* Image 4: Ryou of the Wind */}
+                <div className="col-md-6 col-lg-4 mb-4">
+                  <Image 
+                    src="/images/@Ryou-of-the-Wind.jpg" 
+                    alt="Ryou of the Wind"
+                    width={500} 
+                    height={300} 
+                    layout="responsive" 
+                    objectFit="contain"
+                  />
+                </div>
+              
+                {/* Video 1 */}
+                <div className="col-md-6 col-lg-4 mb-4">
+                  <video controls className="responsive-html-video">
+                    <source src="/images/queencamilarosa.mov" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                {/* Video 2 */}
+                <div className="col-md-6 col-lg-4 mb-4">
+                  <video controls className="responsive-html-video">
+                    <source src="/images/AA6D0F90-51AA-447D-9F8B-1E406370AE3E.MP4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
             </div>
           </div>
 

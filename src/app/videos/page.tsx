@@ -31,6 +31,7 @@ export default function VideosPage() {
                               frameBorder="0"
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                               allowFullScreen
+                              className="responsive-video-iframe"
                             ></iframe>
                           </strong>
                           <span>&nbsp;</span>
@@ -49,6 +50,7 @@ export default function VideosPage() {
                               frameBorder="0"
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                               allowFullScreen
+                              className="responsive-video-iframe"
                             ></iframe>
                           </strong>
                           <a href="#"> &nbsp; </a>
@@ -61,6 +63,7 @@ export default function VideosPage() {
                               width="500" // Adjust width/height as needed
                               height="315"
                               allow="autoplay"
+                              className="responsive-video-iframe"
                             ></iframe>
                           </strong>
                           <a href="#"> &nbsp; </a>
@@ -83,6 +86,7 @@ export default function VideosPage() {
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
+                          className="responsive-video-iframe"
                         ></iframe>
                       </strong>
                       <span>&nbsp;</span>
@@ -102,6 +106,7 @@ export default function VideosPage() {
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
+                          className="responsive-video-iframe"
                         ></iframe>
                       </strong>
                       <span>&nbsp;</span>
@@ -117,6 +122,114 @@ export default function VideosPage() {
                     <p><strong>&nbsp;</strong><a href="tel: 305-240-9671" className="ms-2"> &nbsp; </a></p>
                   </div>
                 </div> */}
+              </div>
+
+              {/* New YouTube Embeds Section */}
+              <div className="row mt-5">
+                <div className="col-12 mb-3">
+                  <h6>More Videos</h6>
+                </div>
+                {/* Video 1 */}
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <iframe 
+                    src="https://www.youtube.com/embed/gzp6DA3GVpA"
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="responsive-video-iframe">
+                  </iframe>
+                </div>
+                {/* Video 2 */}
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <iframe 
+                    src="https://www.youtube.com/embed/ZVvxoAwFUtg"
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="responsive-video-iframe">
+                  </iframe>
+                </div>
+                {/* Video 3 */}
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <iframe 
+                    src="https://www.youtube.com/embed/kp8oVusqdCU"
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="responsive-video-iframe">
+                  </iframe>
+                </div>
+                {/* Video 4 */}
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <iframe 
+                    src="https://www.youtube.com/embed/VyfxJmCPolE"
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="responsive-video-iframe">
+                  </iframe>
+                </div>
+                {/* Video 5 */}
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <iframe 
+                    src="https://www.youtube.com/embed/z4eu4iycQHQ"
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="responsive-video-iframe">
+                  </iframe>
+                </div>
+                {/* Video 6 */}
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <iframe 
+                    src="https://www.youtube.com/embed/n5Q0jgDAz7Y"
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="responsive-video-iframe">
+                  </iframe>
+                </div>
+                {/* Video 7 */}
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <iframe 
+                    src="https://www.youtube.com/embed/isofiKAfqcQ"
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="responsive-video-iframe">
+                  </iframe>
+                </div>
+                {/* Video 8 */}
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <iframe 
+                    src="https://www.youtube.com/embed/_ENQSfo8QrU"
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="responsive-video-iframe">
+                  </iframe>
+                </div>
+                {/* Playlist - Spanning full width for prominence or use col-lg-12 */}
+                <div className="col-12 mb-4">
+                  <h6 className="mt-4 mb-3">Playlist</h6>
+                  <iframe 
+                    src="https://www.youtube.com/embed/videoseries?list=PLgku7XgQ1eMbzUbfC_a2UhD3tQ8Ewc8gu"
+                    title="YouTube playlist player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="responsive-video-iframe" 
+                    style={{ minHeight: '400px' }} /* Playlists often need more height */>
+                  </iframe>
+                </div>
               </div>
             </div>
             {/* Potentially add right column if layout needs adjustment */}
