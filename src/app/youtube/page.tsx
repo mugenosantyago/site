@@ -38,6 +38,40 @@ export default function YouTubePage() {
               </iframe>
             </div>
           </div>
+
+          {/* Curated Playlists Section */}
+          <div className="row my-4">
+            <div className="col-12">
+              <h2 className="h4 mb-3">Curated Playlists</h2>
+            </div>
+            {[ 
+              'OLAK5uy_mfdzObmPuwhwhVHGOotLtj5ROzT9OouQ0', 
+              'OLAK5uy_mNUy__mdds4MWWevrF-fRYBNGXCmrF3eY', 
+              'OLAK5uy_n096fTGweXxsN6P26MwjGmHdlAX7JOVWw', 
+              'OLAK5uy_lkhPyRY6a1FqqbSuQRFuCW-fUQSyunEME', 
+              'OLAK5uy_nNQpHyHgmCUC3XnbdyEX33sWYKhUlcnNY', 
+              'OLAK5uy_mv5J-sj90_jh9B4zZ6h4BzL3NUMP3Q6iA', 
+              'OLAK5uy_nluvwPB06vN4ULVQgErWbz7Cv1nG1IHVA', 
+              'OLAK5uy_mxMhF4mBG_YZ6ytNMo5eZyp4EypP6VsTE',
+              'OLAK5uy_nDxljmlSga4Vt79SbGsgj8ZxDGMDisaLE',
+              'OLAK5uy_lSc2WPyvi3D9oaqA4E2goWNyvU8Qc1OeM',
+              'OLAK5uy_llqhZMwVYOStZTlzd6jOuFvZoe2HxpKUg'
+            ].map((playlistId) => (
+              <div className="col-md-6 col-lg-6 mb-4" key={playlistId}>
+                <iframe 
+                  src={`https://www.youtube.com/embed/videoseries?list=${playlistId}`}
+                  title={`YouTube Playlist - ${playlistId}`}
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowFullScreen
+                  className="responsive-video-iframe" 
+                  style={{ minHeight: '350px' }} /* Adjust height as needed for these playlists */
+                >
+                </iframe>
+              </div>
+            ))}
+          </div>
+
         </main>
       </div>
     </div>

@@ -284,7 +284,7 @@ export default function HomePage() {
                 {/* Video 2 */}
                 <div className="col-md-6 col-lg-6 mb-4">
                   <video controls className="responsive-html-video">
-                    <source src="/images/pirate.mp4" type="video/mp4" />
+                    <source src="/images/pirate.MP4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>

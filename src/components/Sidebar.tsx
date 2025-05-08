@@ -11,6 +11,7 @@ export default function Sidebar() {
     // Point to the static authorization file in /public
     { href: '/authorization1.html', label: 'discography' }, 
     { href: '/videos', label: 'videos' }, // We'll create this page later
+    { href: '/youtube', label: 'youtube' }, // Added YouTube page
     { href: '/contact', label: 'contact' }, // We'll create this page later
     { href: '/shop', label: 'shop' }, // We'll create this page later
   ];
@@ -30,22 +31,19 @@ export default function Sidebar() {
                   className={`nav-link ${pathname === item.href ? 'active' : ''}`}
                   aria-current={pathname === item.href ? 'page' : undefined}
                   href={item.href}
+                  style={{ display: 'inline-block', width: '100%' }} // Ensure full width for consistent spacing
                 >
                   {item.icon && <i className={`${item.icon} me-2`}></i>}
-                  {/* Conditional rendering for labels with spacing */}
-                   {item.label === 'dreamland' && 'dreamland\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
-                   {item.label === 'videos' && 'videos'}
-                   {item.label === 'contact' && 'contact\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
-                   {item.label === 'shop' && '\u00a0shop\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
+                  {item.label}
                  </Link>
               ) : (
                 <a
                   className={`nav-link ${item.label === 'discography' ? (pathname.startsWith('/discography') ? 'active' : '') : ''}`}
                   href={item.href}
+                  style={{ display: 'inline-block', width: '100%' }} // Ensure full width for consistent spacing
                 > 
                   {item.icon && <i className={`${item.icon} me-2`}></i>}
-                  {/* Handling label for the static link */}
-                   {item.label === 'discography' && 'discography'}
+                  {item.label}
                  </a>
               )}
             </li>
