@@ -5,6 +5,8 @@ body {
   color: #e0e0e0;
   /* Use the Unbounded font linked in HTML */
   font-family: 'Unbounded', sans-serif;
+  position: relative; /* Added for potential overlay scenarios */
+  overflow-x: hidden; /* Prevent horizontal scroll when sidebar is off-canvas */
 }
 
 /* --- Navbar --- */
@@ -23,109 +25,100 @@ body {
   color: #cccccc;
 }
 
-/* --- Sidebar --- */
+/* --- Off-Canvas Sidebar --- */
 #sidebarMenu {
   background-color: #1f1f1f;
   box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.1);
-  transition: width 0.3s ease-in-out, padding-left 0.3s ease-in-out, padding-right 0.3s ease-in-out;
+  position: fixed; /* Changed from relative/default */
+  top: 0;
+  left: -280px; /* Start off-screen (adjust width as needed) */
+  width: 280px; /* Fixed width for the sidebar */
+  height: 100vh; /* Full viewport height */
+  z-index: 1040; /* Below Bootstrap modal backdrop (1050), above most content */
+  transition: left 0.3s ease-in-out; /* Animate the slide-in/out */
+  padding-top: 1rem; /* Remove py-4 px-3 from inline/component if they exist */
+}
+
+#sidebarMenu.open {
+  left: 0; /* Slide into view */
 }
 
 .sidebar-sticky {
-  padding-top: 1rem !important; /* Override Bootstrap if needed */
+  /* padding-top: 1rem !important; /* This was here, ensure it's still desired or remove if #sidebarMenu padding is enough */
+  /* The position-sticky might not be needed if the whole sidebar is fixed and scrolls internally */
+  height: 100%;
+  overflow-y: auto; /* Allow scrolling within the sidebar if content exceeds height */
 }
 
 .sidebar .nav-link {
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.7); /* Lighter than default grey */
+  color: rgba(255, 255, 255, 0.7);
   border-radius: 0.25rem;
   margin-bottom: 0.5rem;
+  display: flex; /* For aligning icon and label */
+  align-items: center; /* Align icon and label vertically */
 }
 
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #727272;
+.sidebar .nav-link i {
+  margin-right: 0.75rem; /* Space between icon and label */
+  font-size: 1.25rem; /* Consistent icon size */
 }
+
+/* .sidebar .nav-link .feather was old, replaced by general i styling */
 
 .sidebar .nav-link.active,
 .sidebar .nav-link:hover {
   color: #ffffff;
-  background-color: #333333; /* Darker hover/active */
+  background-color: #333333;
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
+/* Styles for item labels - they are always visible now when sidebar is open */
+.sidebar-item-label {
+  /* display: none; /* This was for the old collapsed state, remove */
 }
 
-/* --- Collapsible Sidebar --- */
-#sidebarMenu.collapsed {
-  width: 80px !important; /* Collapsed width, !important to override col-md-3 if needed */
-  padding-left: 0.5rem !important; /* Reduced padding */
-  padding-right: 0.5rem !important; /* Reduced padding */
-}
+/* Remove old collapsible styles */
+/* #sidebarMenu.collapsed ... rules removed */
 
-#sidebarMenu.collapsed .sidebar-sticky {
-  /* Styles for the content within the collapsed sidebar */
-  align-items: center; /* Center items if flex container */
-}
-
-#sidebarMenu.collapsed .sidebar-item-label {
-  display: none;
-}
-
-#sidebarMenu.collapsed .nav-link {
-  text-align: center; /* Center icons */
-  padding-left: 0.5rem; /* Adjust padding for centered icon */
-  padding-right: 0.5rem; /* Adjust padding for centered icon */
-}
-
-#sidebarMenu.collapsed .nav-link i {
-  margin-right: 0 !important; /* Remove margin when label is hidden */
-  font-size: 1.5rem; /* Slightly larger icons, matching fs-4 in component */
-  display: block; /* Make icon block to help centering if needed */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Sidebar Toggler Button Styling */
+/* Sidebar Toggler Button Styling (the one inside the sidebar, if kept) */
 .sidebar-toggler {
-  /* Positioned by inline styles in component for now, can be refined here */
   font-size: 1.25rem;
   line-height: 1;
   padding: 0.25rem 0.5rem;
-  /* Keep button visible and accessible */
   opacity: 1;
   transition: opacity 0.15s linear;
-}
-
-#sidebarMenu.collapsed .sidebar-toggler {
-  /* Adjust if needed when collapsed, e.g., position */
+  /* This button might be repositioned or primarily a close button now */
 }
 
 /* --- Main Content Wrapper --- */
 .main-wrapper {
   padding-top: 1.5rem !important;
   padding-bottom: 1.5rem !important;
-  border-left: 1px solid #333; /* Darker border */
-  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out; /* Added width transition */
+  /* border-left: 1px solid #333; /* Border might not be relevant if sidebar overlays */
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  /* margin-left will be adjusted by JS or specific classes if sidebar pushes content */
+  /* For overlay, main-wrapper might not need margin adjustments */
 }
+
+/* Remove old rule that adjusted main-wrapper based on .collapsed sidebar */
+/* @media (min-width: 768px) { ... .sidebar.collapsed + .main-wrapper ... } rule removed */
 
 .title-group h1, .title-group h2 {
   color: #ffffff;
 }
 
 .title-group .text-muted {
-  color: #aaaaaa !important; /* Lighter muted text */
+  color: #aaaaaa !important;
 }
 
 /* --- Custom Blocks --- */
 .custom-block {
-  background-color: #1f1f1f; /* Match sidebar/navbar */
+  background-color: #1f1f1f;
   border-radius: 0.5rem;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  border: 1px solid #333; /* Subtle border */
+  border: 1px solid #333;
 }
 
 .custom-block h5, .custom-block h6 {
@@ -138,11 +131,11 @@ body {
 .custom-block small,
 .custom-block strong,
 .custom-block span {
-  color: #e0e0e0; /* Default light text */
+  color: #e0e0e0;
 }
 
 .custom-block a {
-  color: #bb86fc; /* A modern purple accent */
+  color: #bb86fc;
   text-decoration: none;
 }
 
@@ -151,23 +144,20 @@ body {
   text-decoration: underline;
 }
 
-/* Override Bootstrap's bg-white specifically */
 .custom-block.bg-white {
   background-color: #1f1f1f !important;
 }
 
-/* Profile image adjustments if needed */
 .custom-block-profile-image {
-  border: 3px solid #333; /* Darker border for profile image */
-  max-width: 150px; /* Example size adjustment */
-  border-radius: 50%; /* Circular profile image */
-  margin: 0 auto; /* Center if needed */
+  border: 3px solid #333;
+  max-width: 150px;
+  border-radius: 50%;
+  margin: 0 auto;
 }
 
-/* Style for Discography album items */
 #album-players {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Responsive grid */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
 }
 
@@ -175,7 +165,7 @@ body {
   position: relative;
   cursor: pointer;
   border-radius: 0.5rem;
-  overflow: hidden; /* Ensure buttons stay within rounded corners */
+  overflow: hidden;
   border: 1px solid #333;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
@@ -189,7 +179,7 @@ body {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1; /* Square images */
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
@@ -203,7 +193,7 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 50%;
   padding: 10px;
-  filter: invert(1); /* Make SVG white */
+  filter: invert(1);
   opacity: 0.8;
   transition: opacity 0.2s ease-in-out;
 }
@@ -212,17 +202,39 @@ body {
   opacity: 1;
 }
 
-/* Add more styles for a modern dark theme below */
+/* Global Menu Toggle Button (Example Styling) */
+.menu-toggle-btn {
+ position: fixed;
+ top: 15px;
+ left: 15px;
+ z-index: 1045; /* Above sidebar when closed, below when open if sidebar has higher z-index */
+ background-color: #333;
+ color: white;
+ border: none;
+ padding: 10px 15px;
+ border-radius: 5px;
+ cursor: pointer;
+}
 
-@media (min-width: 768px) { /* md breakpoint, same as col-md-* */
-  /* When sidebar is expanded (default Bootstrap behavior) */
-  /* The main-wrapper col-md-9 with ms-sm-auto should align correctly */
-  /* No explicit rule needed here if Bootstrap grid handles it */
+.menu-toggle-btn:hover {
+ background-color: #555;
+}
 
-  /* When sidebar is collapsed */
-  .sidebar.collapsed + .main-wrapper {
-    margin-left: 80px !important; /* Match collapsed sidebar width */
-    width: calc(100% - 80px) !important; /* Optional: ensure it fills space, added !important */
-    margin-top: 0 !important; /* Diagnostic: Force no top margin */
-  }
+/* Optional: Backdrop for when sidebar is open */
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1030; /* Below sidebar, above content */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.sidebar-backdrop.show {
+  opacity: 1;
+  visibility: visible;
 } 

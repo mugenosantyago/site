@@ -2,15 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // To determine active link
-import { useState } from 'react'; // Import useState
 
-export default function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean;
+  onToggle: () => void;
+}
+
+export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
   const pathname = usePathname(); // Get current path
-  const [isCollapsed, setIsCollapsed] = useState(false); // Add collapsed state
-
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
 
   const navItems = [
     { href: '/', label: 'dreamland', icon: 'bi-house-fill' },
@@ -25,63 +24,52 @@ export default function Sidebar() {
   return (
     <nav
       id="sidebarMenu"
-      className={`col-md-3 col-lg-3 d-md-block sidebar ${isCollapsed ? 'collapsed' : ''}`}
+      className={`sidebar ${isOpen ? 'open' : ''}`} // Removed col classes, d-md-block. Uses .open for visibility.
     >
       <div className="position-sticky py-4 px-3 sidebar-sticky">
-        {/* Toggle Button */}
+        {/* Simplified Toggle Button - primarily acts as a CLOSE button now inside the sidebar */}
+        {/* This button could be styled as a prominent 'X' at the top of the sidebar */}
         <button 
-          className="btn btn-link d-md-none mb-3" // Hide on md and larger screens initially, shown on mobile
-          onClick={toggleSidebar} 
-          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-          aria-expanded={!isCollapsed}
+          className="btn btn-link sidebar-toggler mb-3" // Simplified classes, always visible if sidebar is open
+          onClick={onToggle} 
+          aria-label="Close sidebar"
+          // Icon changes to 'X' when open, or could always be 'X' as it's a close button now
         >
-          <i className={isCollapsed ? "bi bi-list" : "bi bi-x"}></i>
+          <i className="bi bi-x-lg"></i> {/* Changed to X icon, bi-x-lg for larger X */}
         </button>
-        {/* Sidebar Toggle for larger screens - styled differently */}
-        <button 
-            className="btn btn-outline-secondary d-none d-md-block position-absolute top-0 end-0 m-2 sidebar-toggler"
-            onClick={toggleSidebar}
-            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-            aria-expanded={!isCollapsed}
-            style={{ zIndex: 1050 }} // Ensure it's above other elements
-        >
-            <i className={isCollapsed ? "bi bi-arrow-right-short" : "bi bi-arrow-left-short"}></i>
-        </button>
+        
+        {/* The d-md-none toggle button can be removed if we have a global toggle and this close button */}
+        {/* For now, I am removing the mobile-specific toggle that was inside here */}
 
         <ul className="nav flex-column">
           {navItems.map((item) => (
             <li className="nav-item" key={item.href}>
-              {/* Use standard <a> for external/static html link, Link for internal Next routes */}
               {item.href.startsWith('/') && !item.href.endsWith('.html') ? (
                 <Link
                   className={`nav-link ${pathname === item.href ? 'active' : ''}`}
                   aria-current={pathname === item.href ? 'page' : undefined}
                   href={item.href}
-                  title={item.label} // Add title for tooltip when collapsed
-                  style={{ display: 'inline-block', width: '100%' }} // Ensure full width for consistent spacing
+                  title={item.label}
+                  style={{ display: 'inline-block', width: '100%' }}
+                  onClick={isOpen ? onToggle : undefined} // Optional: close sidebar on nav item click when open
                 >
-                  {item.icon && <i className={`${item.icon} ${isCollapsed ? 'fs-4' : 'me-2'}`}></i>}
-                  {!isCollapsed && <span className="sidebar-item-label">{item.label}</span>}
+                  {item.icon && <i className={`${item.icon} me-2`}></i>} {/* Icon styling simplified, label always shown now */}
+                  <span className="sidebar-item-label">{item.label}</span>
                  </Link>
               ) : (
                 <a
                   className={`nav-link ${item.label === 'discography' ? (pathname.startsWith('/discography') ? 'active' : '') : ''}`}
                   href={item.href}
-                  title={item.label} // Add title for tooltip when collapsed
-                  style={{ display: 'inline-block', width: '100%' }} // Ensure full width for consistent spacing
+                  title={item.label}
+                  style={{ display: 'inline-block', width: '100%' }}
+                  onClick={isOpen ? onToggle : undefined} // Optional: close sidebar on nav item click when open
                 > 
-                  {item.icon && <i className={`${item.icon} ${isCollapsed ? 'fs-4' : 'me-2'}`}></i>}
-                  {!isCollapsed && <span className="sidebar-item-label">{item.label}</span>}
+                  {item.icon && <i className={`${item.icon} me-2`}></i>} {/* Icon styling simplified */}
+                  <span className="sidebar-item-label">{item.label}</span>
                  </a>
               )}
             </li>
           ))}
-          {/* Original template had an empty item at the bottom, maybe for spacing/logout? Omitted for now. */}
-          {/* 
-          <li className="nav-item border-top mt-auto pt-2">
-            <a className="nav-link" href="#"> </a>
-          </li> 
-          */}
         </ul>
       </div>
     </nav>

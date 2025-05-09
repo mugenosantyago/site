@@ -1,22 +1,45 @@
 import Image from "next/image";
 import Sidebar from '@/components/Sidebar';
 import VideoPlayerManager from '@/components/VideoPlayerManager';
+import { useState } from 'react';
+
+// A simple backdrop component
+const SidebarBackdrop = ({ show, onClick }: { show: boolean; onClick: () => void }) => {
+  return <div className={`sidebar-backdrop ${show ? 'show' : ''}`} onClick={onClick}></div>;
+};
 
 export default function HomePage() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="container-fluid">
       <VideoPlayerManager />
-      <div className="row align-items-start">
-        <Sidebar />
+      
+      {/* Global Menu Toggle Button */}
+      <button className="btn btn-primary menu-toggle-btn" onClick={toggleSidebar} aria-label="Toggle navigation">
+        <i className={`bi ${isSidebarOpen ? 'bi-x' : 'bi-list'}`}></i> {/* Dynamic icon */}
+      </button>
 
-        <main className="main-wrapper col-md-9 py-4 col-lg-9 px-md-4 border-start">
+      <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+      <SidebarBackdrop show={isSidebarOpen} onClick={toggleSidebar} />
+
+      {/* The main content area. Column classes removed. 
+          Padding/margin might need adjustment based on whether sidebar pushes or overlays. 
+          For now, assuming overlay or full width when sidebar is closed. */}
+      <div className="row align-items-start"> {/* Keeping align-items-start from previous attempts, might be useful or removable later */}
+        {/* Sidebar is no longer a direct child here in terms of static layout */}
+        <main className="main-wrapper py-4 px-md-4 border-start" style={{ width: '100%' }}> {/* Removed col-md-9/col-lg-9. Added width:100% for now */} 
           {/* Dreamsickle Logo */}
           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
             <Image
               src="/images/Dreamsickle_YumeKama.jpg"
               alt="Dreamsickle Logo"
-              width={150} // Adjust as needed, should match CSS for .circular-image
-              height={150} // Adjust as needed, should match CSS for .circular-image
+              width={150}
+              height={150}
               className="circular-image"
               priority
             />
