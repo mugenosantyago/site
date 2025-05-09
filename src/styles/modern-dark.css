@@ -107,7 +107,7 @@ body {
   padding-top: 1.5rem !important;
   padding-bottom: 1.5rem !important;
   border-left: 1px solid #333; /* Darker border */
-  transition: margin-left 0.3s ease-in-out;
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out; /* Added width transition */
 }
 
 .title-group h1, .title-group h2 {
@@ -225,6 +225,6 @@ body {
     /* Ensure it takes up the remaining width. col-md-9 might be too restrictive. */
     /* Consider removing col-md-9 or col-lg-9 if they conflict with margin-left */
     /* Or, ensure the parent of .main-wrapper allows this override */
-    width: calc(100% - 80px); /* Optional: ensure it fills space */
+    width: calc(100% - 80px) !important; /* Optional: ensure it fills space, added !important */
   }
 } 

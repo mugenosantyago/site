@@ -9,7 +9,7 @@ export default function HomePage() {
       <div className="row">
         <Sidebar />
 
-        <main className="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
+        <main className="main-wrapper col-md-9 py-4 col-lg-9 px-md-4 border-start">
           {/* Dreamsickle Logo */}
           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
             <Image
