@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Sidebar from '@/components/Sidebar';
+import VideoPlayerManager from '@/components/VideoPlayerManager';
 
 export default function HomePage() {
   return (
     <div className="container-fluid">
+      <VideoPlayerManager />
       <div className="row">
         <Sidebar />
 
@@ -31,14 +33,15 @@ export default function HomePage() {
                 <p>EPK&nbsp;</p>
                 <p>&nbsp;</p>
                 <iframe
+                  id="youtube-player-page-1"
                   width="570"
                   height="320"
-                  src="https://www.youtube.com/embed/DcIUpadsjCc?si=VvKqseAloI0fvnsv"
+                  src="https://www.youtube.com/embed/DcIUpadsjCc?si=VvKqseAloI0fvnsv&enablejsapi=1"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  className="responsive-video-iframe"
+                  className="responsive-video-iframe youtube-iframe"
                 ></iframe>
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
@@ -47,14 +50,15 @@ export default function HomePage() {
                 <p><small>&nbsp; &nbsp;</small></p>
                 <div className="custom-block-numbers d-flex align-items-center">
                   <iframe
+                    id="youtube-player-page-2"
                     width="560"
                     height="315"
-                    src="https://www.youtube.com/embed/0a9AE5O2vNI?si=0NSxmeH4Cb5qz47C"
+                    src="https://www.youtube.com/embed/0a9AE5O2vNI?si=0NSxmeH4Cb5qz47C&enablejsapi=1"
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
-                    className="responsive-video-iframe"
+                    className="responsive-video-iframe youtube-iframe"
                   ></iframe>
                   <span>&nbsp;</span>
                   <span>&nbsp;</span>
@@ -74,37 +78,40 @@ export default function HomePage() {
                   [santyago &lt;bass&gt;&nbsp; &nbsp;b2b frzntrtl]&nbsp;
                 </h5>
                 <iframe
+                  id="youtube-player-page-3"
                   width="430"
                   height="370"
-                  src="https://www.youtube.com/embed/dbbL9Jcy76Q?si=STPJiMCnIfP53hii"
+                  src="https://www.youtube.com/embed/dbbL9Jcy76Q?si=STPJiMCnIfP53hii&enablejsapi=1"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  className="responsive-video-iframe"
+                  className="responsive-video-iframe youtube-iframe"
                 ></iframe>
               </div>
 
               <div className="custom-block bg-white">
                  <iframe
+                  id="youtube-player-page-4"
                   width="430"
                   height="315"
-                  src="https://www.youtube.com/embed/79K7hcvRA98?si=aPRjDlfnRFePcy0z"
+                  src="https://www.youtube.com/embed/79K7hcvRA98?si=aPRjDlfnRFePcy0z&enablejsapi=1"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  className="mb-3 responsive-video-iframe"
+                  className="mb-3 responsive-video-iframe youtube-iframe"
                 ></iframe>
                 <iframe
+                  id="youtube-player-page-5"
                   width="430"
                   height="315"
-                  src="https://www.youtube.com/embed/Vwg7o0NU0F8?si=k0r_Jyo96W9D61LL"
+                  src="https://www.youtube.com/embed/Vwg7o0NU0F8?si=k0r_Jyo96W9D61LL&enablejsapi=1"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  className="responsive-video-iframe"
+                  className="responsive-video-iframe youtube-iframe"
                 ></iframe>
               </div>
             </div>
@@ -213,14 +220,15 @@ export default function HomePage() {
                <div className="custom-block primary-bg">
                   <h5 className="text-white mb-4">&nbsp;[777]</h5>
                    <iframe
+                    id="youtube-player-page-6"
                     width="400"
                     height="315"
-                    src="https://www.youtube.com/embed/jQxbx-IBkyI?si=0MkDuf78eG8dS-ap"
+                    src="https://www.youtube.com/embed/jQxbx-IBkyI?si=0MkDuf78eG8dS-ap&enablejsapi=1"
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
-                    className="responsive-video-iframe"
+                    className="responsive-video-iframe youtube-iframe"
                   ></iframe>
                   <a href="#"> </a>
                   <a href="#"> </a>

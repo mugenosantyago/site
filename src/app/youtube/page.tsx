@@ -1,10 +1,12 @@
 import Sidebar from '@/components/Sidebar';
+import VideoPlayerManager from '@/components/VideoPlayerManager';
 
 export default function YouTubePage() {
   const channelUploadsPlaylistId = "UUQ4G8mV1TMiDbEyuWK0cNzg"; // Derived from channel ID UCQ4G8mV1TMiDbEyuWK0cNzg
 
   return (
     <div className="container-fluid">
+      <VideoPlayerManager />
       <div className="row">
         <Sidebar />
         <main className="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
@@ -27,12 +29,13 @@ export default function YouTubePage() {
                 </a>
               </p>
               <iframe 
-                src={`https://www.youtube.com/embed/videoseries?list=${channelUploadsPlaylistId}`}
+                id={`youtube-player-main-channel-uploads`}
+                src={`https://www.youtube.com/embed/videoseries?list=${channelUploadsPlaylistId}&enablejsapi=1`}
                 title="YouTube Channel Playlist"
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowFullScreen
-                className="responsive-video-iframe" 
+                className="responsive-video-iframe youtube-iframe"
                 style={{ minHeight: '500px' }} /* Playlist embeds often benefit from more height */
               >
               </iframe>
@@ -56,15 +59,16 @@ export default function YouTubePage() {
               'OLAK5uy_nDxljmlSga4Vt79SbGsgj8ZxDGMDisaLE',
               'OLAK5uy_lSc2WPyvi3D9oaqA4E2goWNyvU8Qc1OeM',
               'OLAK5uy_llqhZMwVYOStZTlzd6jOuFvZoe2HxpKUg'
-            ].map((playlistId) => (
+            ].map((playlistId, index) => (
               <div className="col-md-6 col-lg-6 mb-4" key={playlistId}>
                 <iframe 
-                  src={`https://www.youtube.com/embed/videoseries?list=${playlistId}`}
+                  id={`youtube-player-playlist-${playlistId}`}
+                  src={`https://www.youtube.com/embed/videoseries?list=${playlistId}&enablejsapi=1`}
                   title={`YouTube Playlist - ${playlistId}`}
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                   allowFullScreen
-                  className="responsive-video-iframe" 
+                  className="responsive-video-iframe youtube-iframe"
                   style={{ minHeight: '350px' }} /* Adjust height as needed for these playlists */
                 >
                 </iframe>
