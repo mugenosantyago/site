@@ -95,8 +95,14 @@ function DiscographyContent() {
         localStorage.setItem('access_token', tokenData.access_token);
         setAccessToken(tokenData.access_token);
         window.history.replaceState({}, document.title, "/discography");
-      } catch (err: any) {
-        setError(`Error fetching token: ${err.message}`);
+      } catch (err: unknown) {
+        let message = 'An unknown error occurred';
+        if (err instanceof Error) {
+          message = err.message;
+        } else if (typeof err === 'string') {
+          message = err;
+        }
+        setError(`Error fetching token: ${message}`);
         setIsLoading(false);
       }
     };
@@ -162,30 +168,67 @@ function DiscographyContent() {
           }
         });
         setAlbums(uniqueAlbums);
-      } catch (err: any) { setError(`Error fetching albums: ${err.message}`);
+      } catch (err: unknown) { 
+        let message = 'An unknown error occurred';
+        if (err instanceof Error) {
+          message = err.message;
+        } else if (typeof err === 'string') {
+          message = err;
+        }
+        setError(`Error fetching albums: ${message}`);
       } finally { setIsLoading(false); }
     };
     fetchAlbumsData();
   }, [accessToken, albums.length]);
 
-  // handlePlayPause function (ensure album.uri is used for context_uri)
+  // handlePlayPause function
   const handlePlayPause = async (albumUri: string, index: number) => {
-    if (!playerRef.current || !deviceIdRef.current) {
-      setError('Player not ready.'); return;
+    if (!playerRef.current || !deviceIdRef.current || !accessToken) {
+      setError('Player not ready or not authorized.');
+      return;
     }
-    const player = playerRef.current;
-    try {
-      const currentState = await player.getCurrentState();
-      if (currentState && !currentState.paused && currentState.context.uri === albumUri) {
-        await player.pause();
-      } else {
-        await player.play({ device_id: deviceIdRef.current, context_uri: albumUri });
-      }
-      // State update for isPlaying and activePlayerIndex is handled by 'player_state_changed' listener
-      // For immediate UI feedback for the clicked item if state listener is slow:
-      setActivePlayerIndex(index); // Visually mark this one, player_state_changed will confirm play state
 
-    } catch (e: any) { setError(`Playback error: ${e.message}`); }
+    const localPlayer = playerRef.current;
+    const currentDeviceId = deviceIdRef.current;
+
+    try {
+      const currentState = await localPlayer.getCurrentState();
+
+      // Check if the requested album is already playing on this device
+      if (currentState && !currentState.paused && currentState.context.uri === albumUri) {
+        await localPlayer.pause(); // Pause using the SDK player instance
+      } else {
+        // Play the selected album on this device using the Web API
+        const response = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${currentDeviceId}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            context_uri: albumUri,
+            // Optionally, you can add position_ms: 0 to start from the beginning
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({ message: 'Failed to parse error response' }));
+          console.error('Spotify API play error:', response.status, errorData);
+          const errorMessage = errorData.error?.message || errorData.message || response.statusText;
+          throw new Error(`Failed to start playback: ${errorMessage}`);
+        }
+        // Playback started via API. The 'player_state_changed' listener will update UI.
+      }
+      setActivePlayerIndex(index); // Optimistically update UI or for visual cue
+    } catch (e: unknown) {
+      let message = 'An unknown playback error occurred';
+      if (e instanceof Error) {
+        message = e.message;
+      } else if (typeof e === 'string') {
+        message = e;
+      }
+      setError(`Playback error: ${message}`);
+    }
   };
 
   // redirectToSpotifyLogin function (remains largely the same)
