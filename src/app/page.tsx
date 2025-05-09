@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <div className="container-fluid">
       <VideoPlayerManager />
-      <div className="row">
+      <div className="row align-items-start">
         <Sidebar />
 
         <main className="main-wrapper col-md-9 py-4 col-lg-9 px-md-4 border-start">
