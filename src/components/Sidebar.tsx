@@ -48,7 +48,7 @@ export default function Sidebar() {
             <i className={isCollapsed ? "bi bi-arrow-right-short" : "bi bi-arrow-left-short"}></i>
         </button>
 
-        <ul className="nav flex-column h-100">
+        <ul className="nav flex-column">
           {navItems.map((item) => (
             <li className="nav-item" key={item.href}>
               {/* Use standard <a> for external/static html link, Link for internal Next routes */}
