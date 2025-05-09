@@ -34,9 +34,9 @@ export default function HomePage() {
           For now, assuming overlay or full width when sidebar is closed. */}
       <div className="row align-items-start"> {/* Keeping align-items-start from previous attempts, might be useful or removable later */}
         {/* Sidebar is no longer a direct child here in terms of static layout */}
-        <main className="main-wrapper py-4 px-md-4 border-start" style={{ width: '100%' }}> {/* Removed col-md-9/col-lg-9. Added width:100% for now */} 
+        <main className="main-wrapper py-4 px-md-4 border-start" style={{ width: '100%', paddingLeft: '90px' }}> {/* Removed col-md-9/col-lg-9. Added width:100% and paddingLeft */} 
           {/* Dreamsickle Logo */}
-          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <div style={{ textAlign: 'left', marginBottom: '20px' }}> {/* Changed to textAlign: 'left' */}
             <Image
               src="/images/Dreamsickle_YumeKama.jpg"
               alt="Dreamsickle Logo"
@@ -47,7 +47,7 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="title-group mb-3">
+          <div className="title-group mb-3" style={{ textAlign: 'center' }}> {/* Added textAlign: 'center' */}
             <h1 className="h2 mb-0">SANTYAGO OF THE DREAMS&nbsp; &nbsp;&nbsp;</h1>
             <small className="text-muted">夢幻のサンチャゴ&nbsp;</small>
           </div>
