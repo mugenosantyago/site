@@ -1,17 +1,38 @@
+'use client'; // Must be a client component to use hooks
+
 import Sidebar from '@/components/Sidebar';
+import { useState } from 'react'; // Import useState
+
+// A simple backdrop component (can be moved to a shared file if used in many places)
+const SidebarBackdrop = ({ show, onClick }: { show: boolean; onClick: () => void }) => {
+  return <div className={`sidebar-backdrop ${show ? 'show' : ''}`} onClick={onClick}></div>;
+};
 
 export default function ContactPage() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="container-fluid">
-      <div className="row">
-        <Sidebar />
-        <main className="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
+      {/* Global Menu Toggle Button */}
+      <button className="btn btn-primary menu-toggle-btn" onClick={toggleSidebar} aria-label="Toggle navigation">
+        <i className={`bi ${isSidebarOpen ? 'bi-x' : 'bi-list'}`}></i>
+      </button>
+
+      <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+      <SidebarBackdrop show={isSidebarOpen} onClick={toggleSidebar} />
+
+      {/* Row and Main content adjustments */}
+      <div className="row align-items-start"> {/* Retain align-items-start if desired */}
+        <main className="main-wrapper py-4 px-md-4 border-start" style={{ width: '100%' }}> {/* Removed col classes, added width 100% */}
           <div className="title-group mb-3">
             <h1 className="h2 mb-0">Contact&nbsp;</h1>
           </div>
 
           <div className="row my-4">
-            {/* Original structure had col-lg-7 and then col-lg-5 inside it? Correcting nesting. */}
             <div className="col-lg-12 col-12">
               <div className="custom-block bg-white">
                 <h6 className="mb-4">&nbsp;mgmt@santyago.io</h6>
