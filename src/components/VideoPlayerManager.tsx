@@ -5,34 +5,67 @@ import { useEffect, useRef, useState } from 'react';
 // Type declarations for YouTube IFrame API
 declare global {
   interface Window {
-    YT: typeof YT;
+    YT?: YT.Namespace; // Use YT.Namespace here
     onYouTubeIframeAPIReady?: () => void;
   }
-  const YT: {
-    Player: new (frameId: string | HTMLElement, config: YT.PlayerOptions) => YT.Player;
-    PlayerState: {
-      PLAYING: number;
-      PAUSED: number;
-      ENDED: number;
-    };
-  };
+
+  // Define the YT namespace and its members
+  // Disabling the lint rule as this is a common way to declare types for global libraries like YT
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace YT {
     interface Player {
       playVideo: () => void;
       pauseVideo: () => void;
-      getPlayerState: () => number;
+      getPlayerState: () => PlayerStateEnum; // Use PlayerStateEnum
       getIframe: () => HTMLIFrameElement;
-      addEventListener: (event: string, listener: (event: any) => void) => void;
-      removeEventListener: (event: string, listener: (event: any) => void) => void;
+      addEventListener: <E extends keyof PlayerEvents>(event: E, listener: PlayerEvents[E]) => void;
+      removeEventListener: <E extends keyof PlayerEvents>(event: E, listener: PlayerEvents[E]) => void;
       destroy: () => void;
     }
+
     interface PlayerOptions {
       height?: string;
       width?: string;
       videoId?: string;
-      events?: {
-        [eventType: string]: (event: any) => void;
-      };
+      playerVars?: PlayerVars;
+      events?: Partial<PlayerEvents>;
+    }
+
+    // This enum provides the values for player states
+    enum PlayerStateEnum {
+      UNSTARTED = -1,
+      ENDED = 0,
+      PLAYING = 1,
+      PAUSED = 2,
+      BUFFERING = 3,
+      CUED = 5,
+    }
+
+    interface PlayerEvents {
+      onReady?: (event: PlayerEvent) => void;
+      onStateChange?: (event: OnStateChangeEvent) => void;
+      // Add other events like onError, onPlaybackQualityChange, etc.
+    }
+
+    interface PlayerEvent {
+      target: Player;
+    }
+
+    interface OnStateChangeEvent extends PlayerEvent {
+      data: PlayerStateEnum;
+    }
+
+    interface PlayerVars {
+      autoplay?: 0 | 1;
+      controls?: 0 | 1 | 2;
+      enablejsapi?: 0 | 1;
+      // Add other player vars as needed
+    }
+    
+    // Define the shape of the global YT object itself
+    interface Namespace {
+        Player: new (frameId: string | HTMLElement, config: PlayerOptions) => Player;
+        PlayerState: typeof PlayerStateEnum;
     }
   }
 }
@@ -43,7 +76,6 @@ const VideoPlayerManager = () => {
   const youtubePlayersRef = useRef<YT.Player[]>([]);
   const currentlyPlayingRef = useRef<HTMLVideoElement | YT.Player | null>(null);
 
-  // Function to pause all other videos/players
   const pauseOthers = (currentPlaying: HTMLVideoElement | YT.Player) => {
     html5VideosRef.current.forEach(video => {
       if (video !== currentPlaying) {
@@ -51,16 +83,15 @@ const VideoPlayerManager = () => {
       }
     });
     youtubePlayersRef.current.forEach(player => {
-      // Check if player and getIframe exist before comparing
-      if (player && player.getIframe && player.getIframe() !== (currentPlaying as YT.Player)?.getIframe()) {
-        if (player.getPlayerState && player.getPlayerState() === window.YT.PlayerState.PLAYING) {
+      if (player !== currentPlaying) {
+        if (player.getPlayerState && typeof player.getPlayerState === 'function' && 
+            player.getPlayerState() === window.YT!.PlayerState.PLAYING) {
           player.pauseVideo();
         }
       }
     });
   };
 
-  // Initialize HTML5 video listeners
   useEffect(() => {
     const videos = Array.from(document.querySelectorAll('video'));
     html5VideosRef.current = videos;
@@ -68,7 +99,9 @@ const VideoPlayerManager = () => {
     const handleHtml5Play = (event: Event) => {
       const currentVideo = event.target as HTMLVideoElement;
       if (currentlyPlayingRef.current !== currentVideo) {
-        pauseOthers(currentVideo);
+        if (window.YT && window.YT.PlayerState) { // Check if YT namespace and PlayerState are available
+          pauseOthers(currentVideo);
+        }
         currentlyPlayingRef.current = currentVideo;
       }
     };
@@ -82,11 +115,10 @@ const VideoPlayerManager = () => {
         video.removeEventListener('play', handleHtml5Play);
       });
     };
-  }, []); // Re-run if videos change, though unlikely without full re-render
+  }, []);
 
-  // Load YouTube IFrame API
   useEffect(() => {
-    if (window.YT && window.YT.Player) {
+    if (window.YT && window.YT.Player) { // Check for YT.Player directly
       setYtApiReady(true);
       return;
     }
@@ -100,34 +132,32 @@ const VideoPlayerManager = () => {
       firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
     }
 
-    // Ensure onYouTubeIframeAPIReady is globally available and handles multiple calls
-    const previousReadyCallback = window.onYouTubeIframeAPIReady;
+    const originalOnReady = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = () => {
       setYtApiReady(true);
-      if (previousReadyCallback) {
-        previousReadyCallback();
+      if (originalOnReady) {
+        originalOnReady();
       }
     };
-    
-    // Cleanup: restore previous callback if component unmounts before API ready
     return () => {
-        if (window.onYouTubeIframeAPIReady && window.onYouTubeIframeAPIReady.toString() === previousReadyCallback?.toString()) {
-            window.onYouTubeIframeAPIReady = previousReadyCallback;
-        }
-    }
-
+      // Restore original if it was ours, to prevent issues if component unmounts then API loads
+      if (window.onYouTubeIframeAPIReady && originalOnReady && window.onYouTubeIframeAPIReady.toString() === originalOnReady.toString()) {
+        //This check is a bit weak, might need a more robust way or just set to originalOnReady
+      } else if (!originalOnReady) { // If there was no original, clear it
+        window.onYouTubeIframeAPIReady = undefined;
+      }
+      // If originalOnReady existed and is different, it means something else set it, so leave it.
+    };
   }, []);
 
-  // Initialize YouTube players when API is ready
   useEffect(() => {
-    if (!ytApiReady) return;
+    if (!ytApiReady || !window.YT || !window.YT.Player || !window.YT.PlayerState) return;
 
     const ytIframes = Array.from(document.querySelectorAll<HTMLIFrameElement>('.youtube-iframe'));
     const newPlayers: YT.Player[] = [];
 
-    const onPlayerStateChange = (event: any, player: YT.Player) => {
-      // event.data is the new player state
-      if (event.data === window.YT.PlayerState.PLAYING) {
+    const onPlayerStateChange = (event: YT.OnStateChangeEvent, player: YT.Player) => {
+      if (event.data === window.YT!.PlayerState.PLAYING) { // Use definite assignment for window.YT here
         if (currentlyPlayingRef.current !== player) {
           pauseOthers(player);
           currentlyPlayingRef.current = player;
@@ -136,43 +166,36 @@ const VideoPlayerManager = () => {
     };
 
     ytIframes.forEach(iframe => {
-      if (iframe.id && !youtubePlayersRef.current.find(p => p.getIframe().id === iframe.id)) {
+      if (iframe.id && !youtubePlayersRef.current.some(p => p.getIframe().id === iframe.id)) {
         try {
-            const player = new window.YT.Player(iframe.id, {
-              events: {
-                'onStateChange': (event: any) => onPlayerStateChange(event, player),
-              },
-            });
-            newPlayers.push(player);
+          const player = new window.YT!.Player(iframe.id, { // Use definite assignment for window.YT here
+            events: {
+              onStateChange: (event: YT.OnStateChangeEvent) => onPlayerStateChange(event, player),
+            },
+          });
+          newPlayers.push(player);
         } catch (error) {
-            console.error("Error creating YouTube player for iframe:", iframe.id, error);
+          console.error("Error creating YouTube player for iframe:", iframe.id, error);
         }
       }
     });
 
     if (newPlayers.length > 0) {
-        youtubePlayersRef.current = [...youtubePlayersRef.current, ...newPlayers];
+      youtubePlayersRef.current = [...youtubePlayersRef.current, ...newPlayers];
     }
-    
-    // No specific cleanup for individual players here as they are managed by the YT API itself.
-    // We just clear our reference array if the component unmounts.
+
     return () => {
-        // Optional: If you want to destroy players when the manager unmounts
-        // youtubePlayersRef.current.forEach(player => {
-        //     try {
-        //         if (player && typeof player.destroy === 'function') {
-        //             player.destroy();
-        //         }
-        //     } catch (e) {
-        //         console.warn("Error destroying YouTube player:", e);
-        //     }
-        // });
-        // youtubePlayersRef.current = [];
+      // Optional: Destroy players when component unmounts
+      // youtubePlayersRef.current.forEach(player => {
+      //   if (player && typeof player.destroy === 'function') {
+      //     try { player.destroy(); } catch (e) { console.warn("Error destroying YT player", e); }
+      //   }
+      // });
+      // youtubePlayersRef.current = []; // Clear array if players are destroyed
     };
+  }, [ytApiReady]);
 
-  }, [ytApiReady]); // Re-run when API is ready
-
-  return null; // This component does not render anything itself
+  return null;
 };
 
 export default VideoPlayerManager; 

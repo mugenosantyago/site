@@ -59,7 +59,7 @@ export default function YouTubePage() {
               'OLAK5uy_nDxljmlSga4Vt79SbGsgj8ZxDGMDisaLE',
               'OLAK5uy_lSc2WPyvi3D9oaqA4E2goWNyvU8Qc1OeM',
               'OLAK5uy_llqhZMwVYOStZTlzd6jOuFvZoe2HxpKUg'
-            ].map((playlistId, index) => (
+            ].map((playlistId) => (
               <div className="col-md-6 col-lg-6 mb-4" key={playlistId}>
                 <iframe 
                   id={`youtube-player-playlist-${playlistId}`}
