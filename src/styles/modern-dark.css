@@ -222,9 +222,7 @@ body {
   /* When sidebar is collapsed */
   .sidebar.collapsed + .main-wrapper {
     margin-left: 80px !important; /* Match collapsed sidebar width */
-    /* Ensure it takes up the remaining width. col-md-9 might be too restrictive. */
-    /* Consider removing col-md-9 or col-lg-9 if they conflict with margin-left */
-    /* Or, ensure the parent of .main-wrapper allows this override */
     width: calc(100% - 80px) !important; /* Optional: ensure it fills space, added !important */
+    margin-top: 0 !important; /* Diagnostic: Force no top margin */
   }
 } 
