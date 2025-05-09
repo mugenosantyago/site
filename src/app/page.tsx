@@ -1,3 +1,5 @@
+'use client'; // Added directive for client component
+
 import Image from "next/image";
 import Sidebar from '@/components/Sidebar';
 import VideoPlayerManager from '@/components/VideoPlayerManager';
