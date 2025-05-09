@@ -21,10 +21,12 @@ export default function HomePage() {
     <div className="container-fluid">
       <VideoPlayerManager />
       
-      {/* Global Menu Toggle Button */}
+      {/* Global Menu Toggle Button - MOVED */}
+      {/* 
       <button className="btn btn-primary menu-toggle-btn" onClick={toggleSidebar} aria-label="Toggle navigation">
-        <i className={`bi ${isSidebarOpen ? 'bi-x' : 'bi-list'}`}></i> {/* Dynamic icon */}
+        <i className={`bi ${isSidebarOpen ? 'bi-x' : 'bi-list'}`}></i>
       </button>
+      */}
 
       <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
       <SidebarBackdrop show={isSidebarOpen} onClick={toggleSidebar} />
@@ -35,6 +37,11 @@ export default function HomePage() {
       <div className="row align-items-start"> {/* Keeping align-items-start from previous attempts, might be useful or removable later */}
         {/* Sidebar is no longer a direct child here in terms of static layout */}
         <main className="main-wrapper py-4 px-md-4 border-start" style={{ width: '100%', paddingLeft: '90px' }}> {/* Removed col-md-9/col-lg-9. Added width:100% and paddingLeft */} 
+          {/* Global Menu Toggle Button - NEW POSITION */}
+          <button className="btn btn-primary menu-toggle-btn" onClick={toggleSidebar} aria-label="Toggle navigation">
+            <i className={`bi ${isSidebarOpen ? 'bi-x' : 'bi-list'}`}></i> {/* Dynamic icon */}
+          </button>
+          
           {/* Dreamsickle Logo */}
           <div style={{ textAlign: 'left', marginBottom: '20px' }}> {/* Changed to textAlign: 'left' */}
             <Image

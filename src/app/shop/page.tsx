@@ -18,10 +18,12 @@ export default function ShopPage() {
 
   return (
     <div className="container-fluid">
-      {/* Global Menu Toggle Button */}
+      {/* Global Menu Toggle Button - MOVED */}
+      {/*
       <button className="btn btn-primary menu-toggle-btn" onClick={toggleSidebar} aria-label="Toggle navigation">
         <i className={`bi ${isSidebarOpen ? 'bi-x' : 'bi-list'}`}></i>
       </button>
+      */}
 
       <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
       <SidebarBackdrop show={isSidebarOpen} onClick={toggleSidebar} />
@@ -29,6 +31,10 @@ export default function ShopPage() {
       {/* Row and Main content adjustments */}
       <div className="row align-items-start">
         <main className="main-wrapper py-4 px-md-4 border-start" style={{ width: '100%' }}>
+          {/* Global Menu Toggle Button - NEW POSITION */}
+          <button className="btn btn-primary menu-toggle-btn" onClick={toggleSidebar} aria-label="Toggle navigation">
+            <i className={`bi ${isSidebarOpen ? 'bi-x' : 'bi-list'}`}></i>
+          </button>
           <div className="title-group mb-3">
             <h1 className="h2 mb-0">shop</h1>
           </div>

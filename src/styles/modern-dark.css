@@ -204,10 +204,10 @@ body {
 
 /* Global Menu Toggle Button (Example Styling) */
 .menu-toggle-btn {
- position: fixed;
- top: 15px;
- left: 15px;
- z-index: 1045; /* Above sidebar when closed, below when open if sidebar has higher z-index */
+ /* position: fixed; */
+ /* top: 15px; */
+ /* left: 15px; */
+ /* z-index: 1045; */ /* Above sidebar when closed, below when open if sidebar has higher z-index */
  background-color: #333;
  color: white;
  border: none;
