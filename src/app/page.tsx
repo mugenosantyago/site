@@ -321,7 +321,7 @@ export default function HomePage() {
                 </div>
                 {/* Video 2 */}
                 <div className="media-card-item">
-                  <video controls className="responsive-html-video" poster="/images/@CD62D5DF-1081-41AA-BC07-ABC3EF631FC8.jpg">
+                  <video controls className="responsive-html-video" poster="/images/@pirate.jpg">
                     <source src="/images/pirate.MP4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
