@@ -281,32 +281,32 @@ body {
 
 /* Apply rotations, offsets, and z-index for stacking */
 .media-card-item:nth-child(1) {
-  transform: translate(-50%, -50%) rotate(-15deg) translateX(-130px) translateY(50px); /* Increased spread */
+  transform: translate(-50%, -50%) rotate(-20deg) translateX(-150px) translateY(60px); /* Evenly spread */
   z-index: 1;
 }
 
 .media-card-item:nth-child(2) {
-  transform: translate(-50%, -50%) rotate(10deg) translateX(100px) translateY(-40px); /* Increased spread */
+  transform: translate(-50%, -50%) rotate(-12deg) translateX(-90px) translateY(30px); /* Evenly spread */
   z-index: 2;
 }
 
 .media-card-item:nth-child(3) {
-  transform: translate(-50%, -50%) rotate(-6deg) translateX(-50px) translateY(60px); /* Increased spread */
+  transform: translate(-50%, -50%) rotate(-4deg) translateX(-30px) translateY(10px); /* Evenly spread */
   z-index: 3;
 }
 
 .media-card-item:nth-child(4) {
-  transform: translate(-50%, -50%) rotate(13deg) translateX(150px) translateY(-50px); /* Increased spread */
+  transform: translate(-50%, -50%) rotate(4deg) translateX(30px) translateY(10px); /* Evenly spread */
   z-index: 4;
 }
 
 .media-card-item:nth-child(5) {
-  transform: translate(-50%, -50%) rotate(-12deg) translateX(-110px) translateY(70px); /* Increased spread */
+  transform: translate(-50%, -50%) rotate(12deg) translateX(90px) translateY(30px); /* Evenly spread */
   z-index: 5;
 }
 
 .media-card-item:nth-child(6) {
-  transform: translate(-50%, -50%) rotate(9deg) translateX(90px) translateY(-60px); /* Increased spread */
+  transform: translate(-50%, -50%) rotate(20deg) translateX(150px) translateY(60px); /* Evenly spread */
   z-index: 6;
 }
 
@@ -328,9 +328,9 @@ body {
 @media (min-width: 768px) {
   .media-card-container {
     /* Styles for container on medium+ screens */
-    padding-top: 180px; /* Adjusted padding */
-    padding-bottom: 180px; /* Adjusted padding */
-    min-height: 900px; /* Increased min height */
+    padding-top: 200px; /* Adjusted padding */
+    padding-bottom: 200px; /* Adjusted padding */
+    min-height: 950px; /* Increased min height */
   }
 
   .media-card-item {
@@ -339,46 +339,46 @@ body {
      top: 50%;
      left: 50%;
      transform: translate(-50%, -50%);
-     width: 90%; /* Adjusted width */
-     max-width: 350px; /* Adjusted max width */
+     width: 85%; /* Adjusted width */
+     max-width: 380px; /* Adjusted max width */
      /* Add transition for smooth response */
      transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out;
   }
 
   /* Re-apply rotations, offsets, and z-index for medium+ screens */
   .media-card-item:nth-child(1) {
-    transform: translate(-50%, -50%) rotate(-15deg) translateX(-130px) translateY(50px); /* Increased spread */
+    transform: translate(-50%, -50%) rotate(-20deg) translateX(-150px) translateY(60px); /* Evenly spread */
     z-index: 1;
   }
   
   .media-card-item:nth-child(2) {
-    transform: translate(-50%, -50%) rotate(10deg) translateX(100px) translateY(-40px); /* Increased spread */
+    transform: translate(-50%, -50%) rotate(-12deg) translateX(-90px) translateY(30px); /* Evenly spread */
     z-index: 2;
   }
   
   .media-card-item:nth-child(3) {
-    transform: translate(-50%, -50%) rotate(-6deg) translateX(-50px) translateY(60px); /* Increased spread */
+    transform: translate(-50%, -50%) rotate(-4deg) translateX(-30px) translateY(10px); /* Evenly spread */
     z-index: 3;
   }
   
   .media-card-item:nth-child(4) {
-    transform: translate(-50%, -50%) rotate(13deg) translateX(150px) translateY(-50px); /* Increased spread */
+    transform: translate(-50%, -50%) rotate(4deg) translateX(30px) translateY(10px); /* Evenly spread */
     z-index: 4;
   }
   
   .media-card-item:nth-child(5) {
-    transform: translate(-50%, -50%) rotate(-12deg) translateX(-110px) translateY(70px); /* Increased spread */
+    transform: translate(-50%, -50%) rotate(12deg) translateX(90px) translateY(30px); /* Evenly spread */
     z-index: 5;
   }
   
   .media-card-item:nth-child(6) {
-    transform: translate(-50%, -50%) rotate(9deg) translateX(90px) translateY(-60px); /* Increased spread */
+    transform: translate(-50%, -50%) rotate(20deg) translateX(150px) translateY(60px); /* Evenly spread */
     z-index: 6;
   }
 
   /* Re-apply hover effect for medium+ screens */
   .media-card-item:hover {
-    transform: translate(-50%, -50%) scale(1.2) rotate(0deg); /* Scale up and straighten on hover, adjusted scale */
+    transform: translate(-50%, -50%) scale(1.2) rotate(0deg); /* Scale up and straighten on hover */
     z-index: 11;
   }
 }
