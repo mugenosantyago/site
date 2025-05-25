@@ -237,4 +237,16 @@ body {
 .sidebar-backdrop.show {
   opacity: 1;
   visibility: visible;
+}
+
+/* Hover effect for media cards */
+.media-card-container > .col:hover {
+  transform: scale(1.05);
+  z-index: 10; /* Bring the hovered card to the front */
+  transition: transform 0.3s ease-in-out, z-index 0s ease-in-out 0.15s; /* Smooth transition */
+}
+
+.media-card-container > .col {
+  transition: transform 0.3s ease-in-out, z-index 0s ease-in-out 0.15s; /* Add transition to the elements */
+  position: relative; /* Needed for z-index to work correctly */
 } 

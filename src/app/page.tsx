@@ -270,7 +270,7 @@ export default function HomePage() {
           </div>
 
           {/* New Images and Videos Section */}
-          <div className="row my-4">
+          <div className="row my-4 media-card-container">
             <div className="col-12">
               <div className="row">
                 {/* Image 1: Royce Danilo */}
@@ -316,14 +316,14 @@ export default function HomePage() {
               
                 {/* Video 1 */}
                 <div className="col-md-6 col-lg-6 mb-4">
-                  <video controls className="responsive-html-video">
+                  <video controls className="responsive-html-video" poster="/images/royce-danilo.jpg">
                     <source src="/images/queencamilarosa.mov" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
                 {/* Video 2 */}
                 <div className="col-md-6 col-lg-6 mb-4">
-                  <video controls className="responsive-html-video">
+                  <video controls className="responsive-html-video" poster="/images/Elijah-Valentino-Water-Fox.jpg">
                     <source src="/images/pirate.MP4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
