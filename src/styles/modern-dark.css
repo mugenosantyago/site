@@ -249,4 +249,183 @@ body {
 .media-card-container > .col {
   transition: transform 0.3s ease-in-out, z-index 0s ease-in-out 0.15s; /* Add transition to the elements */
   position: relative; /* Needed for z-index to work correctly */
+}
+
+/* Media card container for stacking effect */
+.media-card-container {
+  position: relative; /* Establish positioning context */
+  /* Adjust padding/margin as needed for the stacked cards to fit */
+  padding-top: 50px; /* Adjusted padding */
+  padding-bottom: 50px; /* Adjusted padding */
+  min-height: 600px; /* Increased min height to better contain stack */
+  display: flex; /* Use flexbox to help center the stack */
+  justify-content: center; /* Center the stack horizontally */
+  align-items: center; /* Center the stack vertically */
+}
+
+.media-card-item {
+  position: absolute; /* Position cards absolutely within the container */
+  width: 80%; /* Adjust width */
+  max-width: 300px; /* Adjusted max width for a tighter stack */
+  transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out;
+  border: 1px solid #333; /* Add a border for card separation */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.6); /* Increased shadow */
+  background-color: #1f1f1f; /* Add background */
+  border-radius: 0.5rem; /* Match other custom blocks */
+  overflow: hidden; /* Ensure image/video stays within bounds */
+  /* Initial state (all stacked in the center before nth-child offsets) */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the absolute element */
+}
+
+/* Apply rotations, offsets, and z-index for stacking */
+.media-card-item:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(-8deg) translateX(-30px) translateY(10px);
+  z-index: 1;
+}
+
+.media-card-item:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(5deg) translateX(20px) translateY(-5px);
+  z-index: 2;
+}
+
+.media-card-item:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(-3deg) translateX(-10px) translateY(15px);
+  z-index: 3;
+}
+
+.media-card-item:nth-child(4) {
+  transform: translate(-50%, -50%) rotate(7deg) translateX(40px) translateY(-10px);
+  z-index: 4;
+}
+
+.media-card-item:nth-child(5) {
+  transform: translate(-50%, -50%) rotate(-6deg) translateX(-25px) translateY(20px);
+  z-index: 5;
+}
+
+.media-card-item:nth-child(6) {
+  transform: translate(-50%, -50%) rotate(4deg) translateX(15px) translateY(-15px);
+  z-index: 6;
+}
+
+/* Ensure images and videos fill their containers */
+.media-card-item img,
+.media-card-item video {
+  display: block;
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Update hover effect */
+.media-card-item:hover {
+  transform: translate(-50%, -50%) scale(1.15) rotate(0deg); /* Scale up and straighten on hover */
+  z-index: 11; /* Bring hovered card clearly to the front */
+}
+
+/* Apply stacking styles only on medium screens and up */
+@media (min-width: 768px) {
+  .media-card-container {
+    /* Styles for container on medium+ screens */
+    padding-top: 100px; 
+    padding-bottom: 100px;
+    min-height: 600px;
+  }
+
+  .media-card-item {
+     /* Styles for items on medium+ screens - base absolute positioning */
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     width: 80%;
+     max-width: 300px;
+     /* Add transition for smooth response */
+     transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out;
+  }
+
+  /* Re-apply rotations, offsets, and z-index for medium+ screens */
+  .media-card-item:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(-8deg) translateX(-30px) translateY(10px);
+    z-index: 1;
+  }
+  
+  .media-card-item:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(5deg) translateX(20px) translateY(-5px);
+    z-index: 2;
+  }
+  
+  .media-card-item:nth-child(3) {
+    transform: translate(-50%, -50%) rotate(-3deg) translateX(-10px) translateY(15px);
+    z-index: 3;
+  }
+  
+  .media-card-item:nth-child(4) {
+    transform: translate(-50%, -50%) rotate(7deg) translateX(40px) translateY(-10px);
+    z-index: 4;
+  }
+  
+  .media-card-item:nth-child(5) {
+    transform: translate(-50%, -50%) rotate(-6deg) translateX(-25px) translateY(20px);
+    z-index: 5;
+  }
+  
+  .media-card-item:nth-child(6) {
+    transform: translate(-50%, -50%) rotate(4deg) translateX(15px) translateY(-15px);
+    z-index: 6;
+  }
+
+  /* Re-apply hover effect for medium+ screens */
+  .media-card-item:hover {
+    transform: translate(-50%, -50%) scale(1.15) rotate(0deg);
+    z-index: 11;
+  }
+}
+
+/* For smaller screens, revert to a standard flow */
+@media (max-width: 767.98px) {
+  .media-card-container {
+    position: static;
+    padding: 0;
+    min-height: auto;
+    display: block; /* Revert to block layout */
+  }
+
+  .media-card-item {
+    position: static;
+    transform: none;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    margin-bottom: 1.5rem; /* Increased margin for separation */
+    z-index: auto;
+    border: none; /* Remove border in stacked view */
+    box-shadow: none; /* Remove shadow in stacked view */
+    background-color: transparent; /* Remove background in stacked view */
+    padding: 0; /* Remove padding */
+  }
+
+  /* Remove hover effects on small screens */
+  .media-card-item:hover {
+    transform: none;
+    z-index: auto;
+  }
+
+  /* Ensure images and videos are responsive on small screens */
+  .media-card-item img,
+  .media-card-item video {
+    width: 100%;
+    height: auto;
+    border: 1px solid #333; /* Add border back for individual items */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4); /* Add shadow back */
+    border-radius: 0.5rem; /* Add border radius back */
+  }
+
+  /* Adjust spacing for items like the video title */
+  .media-card-item p {
+    margin-top: 0.5rem; /* Add space above paragraph */
+    margin-bottom: 0;
+  }
 } 

@@ -270,11 +270,9 @@ export default function HomePage() {
           </div>
 
           {/* New Images and Videos Section */}
-          <div className="row my-4 media-card-container">
-            <div className="col-12">
-              <div className="row">
+          <div className="media-card-container">
                 {/* Image 1: Royce Danilo */}
-                <div className="col-md-6 col-lg-6 mb-4">
+                <div className="media-card-item">
                   <Image 
                     src="/images/royce-danilo.jpg"
                     alt="Royce Danilo"
@@ -284,7 +282,7 @@ export default function HomePage() {
                   />
                 </div>
                 {/* Image 2: Elijah Valentino */}
-                <div className="col-md-6 col-lg-6 mb-4">
+                <div className="media-card-item">
                   <Image 
                     src="/images/Elijah-Valentino-Water-Fox.jpg"
                     alt="Elijah Valentino"
@@ -294,7 +292,7 @@ export default function HomePage() {
                   />
                 </div>
                 {/* Image 3: John Laurel */}
-                <div className="col-md-6 col-lg-6 mb-4">
+                <div className="media-card-item">
                   <Image 
                     src="/images/JOHN-LAUREL,-LYNX-DOCTOR.jpg"
                     alt="John Laurel"
@@ -304,7 +302,7 @@ export default function HomePage() {
                   />
                 </div>
                 {/* Image 4: Ryou of the Wind */}
-                <div className="col-md-6 col-lg-6 mb-4">
+                <div className="media-card-item">
                   <Image 
                     src="/images/Ryou-of-the-Wind.jpg"
                     alt="Ryou of the Wind"
@@ -315,21 +313,19 @@ export default function HomePage() {
                 </div>
               
                 {/* Video 1 */}
-                <div className="col-md-6 col-lg-6 mb-4">
+                <div className="media-card-item">
                   <video controls className="responsive-html-video" poster="/images/royce-danilo.jpg">
                     <source src="/images/queencamilarosa.mov" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
                 {/* Video 2 */}
-                <div className="col-md-6 col-lg-6 mb-4">
+                <div className="media-card-item">
                   <video controls className="responsive-html-video" poster="/images/Elijah-Valentino-Water-Fox.jpg">
                     <source src="/images/pirate.MP4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
-              </div>
-            </div>
           </div>
 
           <footer className="site-footer">
