@@ -255,9 +255,9 @@ body {
 .media-card-container {
   position: relative; /* Establish positioning context */
   /* Adjust padding/margin as needed for the stacked cards to fit */
-  padding-top: 50px; /* Adjusted padding */
-  padding-bottom: 50px; /* Adjusted padding */
-  min-height: 600px; /* Increased min height to better contain stack */
+  padding-top: 80px; /* Adjusted padding */
+  padding-bottom: 80px; /* Adjusted padding */
+  min-height: 700px; /* Increased min height to better contain stack */
   display: flex; /* Use flexbox to help center the stack */
   justify-content: center; /* Center the stack horizontally */
   align-items: center; /* Center the stack vertically */
@@ -265,8 +265,8 @@ body {
 
 .media-card-item {
   position: absolute; /* Position cards absolutely within the container */
-  width: 80%; /* Adjust width */
-  max-width: 300px; /* Adjusted max width for a tighter stack */
+  width: 90%; /* Adjusted width */
+  max-width: 350px; /* Adjusted max width */
   transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out;
   border: 1px solid #333; /* Add a border for card separation */
   box-shadow: 0 8px 16px rgba(0,0,0,0.6); /* Increased shadow */
@@ -281,32 +281,32 @@ body {
 
 /* Apply rotations, offsets, and z-index for stacking */
 .media-card-item:nth-child(1) {
-  transform: translate(-50%, -50%) rotate(-8deg) translateX(-30px) translateY(10px);
+  transform: translate(-50%, -50%) rotate(-10deg) translateX(-60px) translateY(20px); /* More spread */
   z-index: 1;
 }
 
 .media-card-item:nth-child(2) {
-  transform: translate(-50%, -50%) rotate(5deg) translateX(20px) translateY(-5px);
+  transform: translate(-50%, -50%) rotate(7deg) translateX(40px) translateY(-10px); /* More spread */
   z-index: 2;
 }
 
 .media-card-item:nth-child(3) {
-  transform: translate(-50%, -50%) rotate(-3deg) translateX(-10px) translateY(15px);
+  transform: translate(-50%, -50%) rotate(-4deg) translateX(-20px) translateY(30px); /* More spread */
   z-index: 3;
 }
 
 .media-card-item:nth-child(4) {
-  transform: translate(-50%, -50%) rotate(7deg) translateX(40px) translateY(-10px);
+  transform: translate(-50%, -50%) rotate(9deg) translateX(80px) translateY(-20px); /* More spread */
   z-index: 4;
 }
 
 .media-card-item:nth-child(5) {
-  transform: translate(-50%, -50%) rotate(-6deg) translateX(-25px) translateY(20px);
+  transform: translate(-50%, -50%) rotate(-8deg) translateX(-50px) translateY(40px); /* More spread */
   z-index: 5;
 }
 
 .media-card-item:nth-child(6) {
-  transform: translate(-50%, -50%) rotate(4deg) translateX(15px) translateY(-15px);
+  transform: translate(-50%, -50%) rotate(6deg) translateX(30px) translateY(-30px); /* More spread */
   z-index: 6;
 }
 
@@ -320,7 +320,7 @@ body {
 
 /* Update hover effect */
 .media-card-item:hover {
-  transform: translate(-50%, -50%) scale(1.15) rotate(0deg); /* Scale up and straighten on hover */
+  transform: translate(-50%, -50%) scale(1.2) rotate(0deg); /* Scale up and straighten on hover, adjusted scale */
   z-index: 11; /* Bring hovered card clearly to the front */
 }
 
@@ -330,7 +330,7 @@ body {
     /* Styles for container on medium+ screens */
     padding-top: 100px; 
     padding-bottom: 100px;
-    min-height: 600px;
+    min-height: 700px; /* Adjusted min height */
   }
 
   .media-card-item {
@@ -339,46 +339,46 @@ body {
      top: 50%;
      left: 50%;
      transform: translate(-50%, -50%);
-     width: 80%;
-     max-width: 300px;
+     width: 90%; /* Adjusted width */
+     max-width: 350px; /* Adjusted max width */
      /* Add transition for smooth response */
      transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out;
   }
 
   /* Re-apply rotations, offsets, and z-index for medium+ screens */
   .media-card-item:nth-child(1) {
-    transform: translate(-50%, -50%) rotate(-8deg) translateX(-30px) translateY(10px);
+    transform: translate(-50%, -50%) rotate(-10deg) translateX(-60px) translateY(20px); /* More spread */
     z-index: 1;
   }
   
   .media-card-item:nth-child(2) {
-    transform: translate(-50%, -50%) rotate(5deg) translateX(20px) translateY(-5px);
+    transform: translate(-50%, -50%) rotate(7deg) translateX(40px) translateY(-10px); /* More spread */
     z-index: 2;
   }
   
   .media-card-item:nth-child(3) {
-    transform: translate(-50%, -50%) rotate(-3deg) translateX(-10px) translateY(15px);
+    transform: translate(-50%, -50%) rotate(-4deg) translateX(-20px) translateY(30px); /* More spread */
     z-index: 3;
   }
   
   .media-card-item:nth-child(4) {
-    transform: translate(-50%, -50%) rotate(7deg) translateX(40px) translateY(-10px);
+    transform: translate(-50%, -50%) rotate(9deg) translateX(80px) translateY(-20px); /* More spread */
     z-index: 4;
   }
   
   .media-card-item:nth-child(5) {
-    transform: translate(-50%, -50%) rotate(-6deg) translateX(-25px) translateY(20px);
+    transform: translate(-50%, -50%) rotate(-8deg) translateX(-50px) translateY(40px); /* More spread */
     z-index: 5;
   }
   
   .media-card-item:nth-child(6) {
-    transform: translate(-50%, -50%) rotate(4deg) translateX(15px) translateY(-15px);
+    transform: translate(-50%, -50%) rotate(6deg) translateX(30px) translateY(-30px); /* More spread */
     z-index: 6;
   }
 
   /* Re-apply hover effect for medium+ screens */
   .media-card-item:hover {
-    transform: translate(-50%, -50%) scale(1.15) rotate(0deg);
+    transform: translate(-50%, -50%) scale(1.2) rotate(0deg); /* Scale up and straighten on hover, adjusted scale */
     z-index: 11;
   }
 }
@@ -404,7 +404,7 @@ body {
     border: none; /* Remove border in stacked view */
     box-shadow: none; /* Remove shadow in stacked view */
     background-color: transparent; /* Remove background in stacked view */
-    padding: 0; /* Remove padding */
+    padding: 0;
   }
 
   /* Remove hover effects on small screens */
