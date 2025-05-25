@@ -314,14 +314,14 @@ export default function HomePage() {
               
                 {/* Video 1 */}
                 <div className="media-card-item">
-                  <video controls className="responsive-html-video" poster="/images/@Queen-Camila-Rosa-of-the-Valley,-Royal-Dog.jpg">
+                  <video controls className="responsive-html-video" poster="/images/Queen-Camila-Rosa-of-the-Valley,-Royal-Dog.jpg">
                     <source src="/images/queencamilarosa.mov" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
                 {/* Video 2 */}
                 <div className="media-card-item">
-                  <video controls className="responsive-html-video" poster="/images/@pirate.jpg">
+                  <video controls className="responsive-html-video" poster="/images/pirate.jpg">
                     <source src="/images/pirate.MP4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>

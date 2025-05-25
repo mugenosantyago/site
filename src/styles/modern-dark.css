@@ -100,6 +100,12 @@ body {
   /* For overlay, main-wrapper might not need margin adjustments */
 }
 
+@media (max-width: 767.98px) {
+  .main-wrapper {
+    padding-top: 4rem !important; /* Increase top padding to account for fixed button */
+  }
+}
+
 /* Remove old rule that adjusted main-wrapper based on .collapsed sidebar */
 /* @media (min-width: 768px) { ... .sidebar.collapsed + .main-wrapper ... } rule removed */
 
@@ -117,8 +123,8 @@ body {
   border-radius: 0.5rem;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  border: 1px solid #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Adjusted shadow */
+  border: 1px solid rgba(51, 51, 51, 0.5); /* Made border slightly transparent */
 }
 
 .custom-block h5, .custom-block h6 {
@@ -204,20 +210,20 @@ body {
 
 /* Global Menu Toggle Button (Example Styling) */
 .menu-toggle-btn {
- /* position: fixed; */
- /* top: 15px; */
- /* left: 15px; */
- /* z-index: 1045; */ /* Above sidebar when closed, below when open if sidebar has higher z-index */
- background-color: #333;
- color: white;
- border: none;
- padding: 10px 15px;
- border-radius: 5px;
- cursor: pointer;
+  position: fixed; /* Make the button fixed */
+  top: 15px; /* Position from the top */
+  left: 15px; /* Position from the left */
+  z-index: 1045; /* Ensure it's above most content */
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .menu-toggle-btn:hover {
- background-color: #555;
+  background-color: #555;
 }
 
 /* Optional: Backdrop for when sidebar is open */
@@ -268,8 +274,8 @@ body {
   width: 90%; /* Adjusted width */
   max-width: 350px; /* Adjusted max width */
   transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out;
-  border: 1px solid #333; /* Add a border for card separation */
-  box-shadow: 0 8px 16px rgba(0,0,0,0.6); /* Increased shadow */
+  border: 1px solid rgba(51, 51, 51, 0.5); /* Made border slightly transparent */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4); /* Adjusted shadow */
   background-color: #1f1f1f; /* Add background */
   border-radius: 0.5rem; /* Match other custom blocks */
   overflow: hidden; /* Ensure image/video stays within bounds */
@@ -422,11 +428,11 @@ body {
     left: auto;
     width: 100%;
     max-width: none;
-    margin-bottom: 1.5rem; /* Increased margin for separation */
+    margin-bottom: 2rem; /* Increased margin for separation */
     z-index: auto;
-    border: none; /* Remove border in stacked view */
-    box-shadow: none; /* Remove shadow in stacked view */
-    background-color: transparent; /* Remove background in stacked view */
+    border: 1px solid #333; /* Added border back for clarity on mobile */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4); /* Adjusted shadow for stacked view */
+    background-color: #1f1f1f; /* Ensure background is set */
     padding: 0;
   }
 
@@ -441,14 +447,21 @@ body {
   .media-card-item video {
     width: 100%;
     height: auto;
-    border: 1px solid #333; /* Add border back for individual items */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4); /* Add shadow back */
-    border-radius: 0.5rem; /* Add border radius back */
+    border: none; /* Removed border from inner image/video */
+    box-shadow: none; /* Removed shadow from inner image/video */
+    border-radius: 0; /* Removed border radius from inner image/video */
   }
 
   /* Adjust spacing for items like the video title */
   .media-card-item p {
     margin-top: 0.5rem; /* Add space above paragraph */
     margin-bottom: 0;
+  }
+
+  /* Adjust bio paragraph on small screens */
+  .custom-block-profile p {
+    padding-left: 1rem; /* Add padding to the left */
+    padding-right: 1rem; /* Add padding to the right */
+    text-align: left !important; /* Ensure text aligns left */
   }
 } 
