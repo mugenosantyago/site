@@ -6,7 +6,7 @@ export default function Navbar() {
       {/* Using flexbox utilities to space out content */}
       <div className="container-fluid d-flex align-items-center">
         {/* Keeping the brand link, adjust class if needed for spacing/styling */}
-        <Link className="navbar-brand me-auto px-3 fs-6" href="/"> {/* Use me-auto to push to the right */}
+        <Link className="navbar-brand ms-auto px-3 fs-6" href="/"> {/* Use ms-auto to push to the right */}
            サンチャゴ
         </Link>
         {/* Add Toggler button if sidebar needs to be collapsible on mobile */}
