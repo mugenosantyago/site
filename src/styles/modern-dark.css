@@ -280,33 +280,46 @@ body {
 }
 
 /* Apply rotations, offsets, and z-index for stacking */
+/* Note: Complex CSS transformations can sometimes have rendering variations across browsers/devices. */
 .media-card-item:nth-child(1) {
-  transform: translate(-50%, -50%) rotate(-20deg) translateX(-150px) translateY(60px); /* Evenly spread */
+  transform: translate(-50%, -50%) rotate(-22deg); /* Adjusted rotation and spread */
+  top: 62%;
+  left: 33%;
   z-index: 1;
 }
 
 .media-card-item:nth-child(2) {
-  transform: translate(-50%, -50%) rotate(-12deg) translateX(-90px) translateY(30px); /* Evenly spread */
+  transform: translate(-50%, -50%) rotate(-14deg); /* Adjusted rotation and spread */
+  top: 57%;
+  left: 40%;
   z-index: 2;
 }
 
 .media-card-item:nth-child(3) {
-  transform: translate(-50%, -50%) rotate(-4deg) translateX(-30px) translateY(10px); /* Evenly spread */
+  transform: translate(-50%, -50%) rotate(-6deg); /* Adjusted rotation and spread */
+  top: 52%;
+  left: 48%;
   z-index: 3;
 }
 
 .media-card-item:nth-child(4) {
-  transform: translate(-50%, -50%) rotate(4deg) translateX(30px) translateY(10px); /* Evenly spread */
+  transform: translate(-50%, -50%) rotate(6deg); /* Adjusted rotation and spread */
+  top: 52%;
+  left: 52%;
   z-index: 4;
 }
 
 .media-card-item:nth-child(5) {
-  transform: translate(-50%, -50%) rotate(12deg) translateX(90px) translateY(30px); /* Evenly spread */
+  transform: translate(-50%, -50%) rotate(14deg); /* Adjusted rotation and spread */
+  top: 57%;
+  left: 60%;
   z-index: 5;
 }
 
 .media-card-item:nth-child(6) {
-  transform: translate(-50%, -50%) rotate(20deg) translateX(150px) translateY(60px); /* Evenly spread */
+  transform: translate(-50%, -50%) rotate(22deg); /* Adjusted rotation and spread */
+  top: 62%;
+  left: 67%;
   z-index: 6;
 }
 
@@ -328,51 +341,61 @@ body {
 @media (min-width: 768px) {
   .media-card-container {
     /* Styles for container on medium+ screens */
-    padding-top: 200px; /* Adjusted padding */
-    padding-bottom: 200px; /* Adjusted padding */
-    min-height: 950px; /* Increased min height */
+    padding-top: 220px; /* Adjusted padding */
+    padding-bottom: 220px; /* Adjusted padding */
+    min-height: 1000px; /* Increased min height */
   }
 
   .media-card-item {
      /* Styles for items on medium+ screens - base absolute positioning */
      position: absolute;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     width: 85%; /* Adjusted width */
-     max-width: 380px; /* Adjusted max width */
+     /* Centering handled by top/left and translate */
+     width: 85%; /* Keep width */
+     max-width: 380px; /* Keep max width */
      /* Add transition for smooth response */
-     transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out;
+     transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out, top 0.3s ease-in-out, left 0.3s ease-in-out;
   }
 
   /* Re-apply rotations, offsets, and z-index for medium+ screens */
   .media-card-item:nth-child(1) {
-    transform: translate(-50%, -50%) rotate(-20deg) translateX(-150px) translateY(60px); /* Evenly spread */
+    transform: translate(-50%, -50%) rotate(-22deg); /* Adjusted rotation and spread */
+    top: 62%;
+    left: 33%;
     z-index: 1;
   }
   
   .media-card-item:nth-child(2) {
-    transform: translate(-50%, -50%) rotate(-12deg) translateX(-90px) translateY(30px); /* Evenly spread */
+    transform: translate(-50%, -50%) rotate(-14deg); /* Adjusted rotation and spread */
+    top: 57%;
+    left: 40%;
     z-index: 2;
   }
   
   .media-card-item:nth-child(3) {
-    transform: translate(-50%, -50%) rotate(-4deg) translateX(-30px) translateY(10px); /* Evenly spread */
+    transform: translate(-50%, -50%) rotate(-6deg); /* Adjusted rotation and spread */
+    top: 52%;
+    left: 48%;
     z-index: 3;
   }
   
   .media-card-item:nth-child(4) {
-    transform: translate(-50%, -50%) rotate(4deg) translateX(30px) translateY(10px); /* Evenly spread */
+    transform: translate(-50%, -50%) rotate(6deg); /* Adjusted rotation and spread */
+    top: 52%;
+    left: 52%;
     z-index: 4;
   }
   
   .media-card-item:nth-child(5) {
-    transform: translate(-50%, -50%) rotate(12deg) translateX(90px) translateY(30px); /* Evenly spread */
+    transform: translate(-50%, -50%) rotate(14deg); /* Adjusted rotation and spread */
+    top: 57%;
+    left: 60%;
     z-index: 5;
   }
   
   .media-card-item:nth-child(6) {
-    transform: translate(-50%, -50%) rotate(20deg) translateX(150px) translateY(60px); /* Evenly spread */
+    transform: translate(-50%, -50%) rotate(22deg); /* Adjusted rotation and spread */
+    top: 62%;
+    left: 67%;
     z-index: 6;
   }
 
