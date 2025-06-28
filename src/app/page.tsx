@@ -59,6 +59,34 @@ export default function HomePage() {
             <small className="text-muted">夢幻のサンチャゴ&nbsp;</small>
           </div>
 
+          {/* 黒い雨2 Full Extended Play Section */}
+          <div className="custom-block custom-block-featured bg-white mb-4">
+            <h3 className="mb-3" style={{ textAlign: 'center' }}>黒い雨2 Full Extended Play</h3>
+            <div className="row align-items-center">
+              <div className="col-md-6 text-center mb-3">
+                <Image
+                  src="/images/クアンタ2.jpg"
+                  alt="黒い雨2 Album Cover"
+                  width={300}
+                  height={300}
+                  className="img-fluid rounded"
+                  priority
+                />
+              </div>
+              <div className="col-md-6">
+                <audio 
+                  controls 
+                  className="w-100"
+                  style={{ marginBottom: '10px' }}
+                >
+                  <source src="/images/黒い雨2_fullmovie_MASTER2.mp3" type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+                <p className="text-muted small text-center">黒い雨2 - Full Extended Play</p>
+              </div>
+            </div>
+          </div>
+
           <div className="row my-4">
             <div className="col-lg-7 col-12">
               <div className="custom-block custom-block-transations">
@@ -103,6 +131,20 @@ export default function HomePage() {
                   </div>
                   <div className="ms-auto"></div>
                 </div>
+              </div>
+
+              {/* LOST TRACK: Santyago and REXEX at Lucidity Festival */}
+              <div className="custom-block bg-white mb-4">
+                <h5 className="mb-3">LOST TRACK: Santyago and REXEX at Lucidity Festival</h5>
+                <audio 
+                  controls 
+                  className="w-100"
+                  style={{ marginBottom: '10px' }}
+                >
+                  <source src="/images/santy x rex KUSH_MASTER_may14_valaria.mp3" type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+                <p className="text-muted small">Live collaboration recorded at Lucidity Festival</p>
               </div>
 
               <div className="custom-block bg-white">
