@@ -87,6 +87,21 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Spotify EP Embed */}
+          <div className="custom-block bg-white mb-4">
+            <iframe 
+              data-testid="embed-iframe" 
+              style={{borderRadius:'12px'}} 
+              src="https://open.spotify.com/embed/album/4oHZ7A2645occJ51AiECix?utm_source=generator" 
+              width="100%" 
+              height="352" 
+              frameBorder="0" 
+              allowFullScreen 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"
+            ></iframe>
+          </div>
+
           <div className="row my-4">
             <div className="col-lg-7 col-12">
               <div className="custom-block custom-block-transations">
