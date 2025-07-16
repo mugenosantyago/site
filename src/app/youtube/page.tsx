@@ -83,10 +83,7 @@ export default function YouTubePage() {
               'OLAK5uy_nNQpHyHgmCUC3XnbdyEX33sWYKhUlcnNY', 
               'OLAK5uy_mv5J-sj90_jh9B4zZ6h4BzL3NUMP3Q6iA', 
               'OLAK5uy_nluvwPB06vN4ULVQgErWbz7Cv1nG1IHVA', 
-              'OLAK5uy_mxMhF4mBG_YZ6ytNMo5eZyp4EypP6VsTE',
-              'OLAK5uy_nDxljmlSga4Vt79SbGsgj8ZxDGMDisaLE',
-              'OLAK5uy_lSc2WPyvi3D9oaqA4E2goWNyvU8Qc1OeM',
-              'OLAK5uy_llqhZMwVYOStZTlzd6jOuFvZoe2HxpKUg'
+              'OLAK5uy_mxMhF4mBG_YZ6ytNMo5eZyp4EypP6VsTE'
             ].map((playlistId) => (
               <div className="col-md-6 col-lg-6 mb-4" key={playlistId}>
                 <iframe 
@@ -102,6 +99,22 @@ export default function YouTubePage() {
                 </iframe>
               </div>
             ))}
+            
+            {/* Replacement video for the bottom three that were removed */}
+            <div className="col-md-6 col-lg-6 mb-4">
+              <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/6JYAN0MrzZw?si=OPwq0k3v08tXrmwd&enablejsapi=1" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+                className="responsive-video-iframe youtube-iframe"
+                id="youtube-player-replacement-video"
+              ></iframe>
+            </div>
           </div>
 
         </main>
