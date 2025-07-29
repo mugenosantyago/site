@@ -25,69 +25,150 @@ body {
   color: #cccccc;
 }
 
-/* --- Off-Canvas Sidebar --- */
+/* --- Modern Off-Canvas Sidebar --- */
 #sidebarMenu {
-  background-color: #1f1f1f;
-  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.1);
-  position: fixed; /* Changed from relative/default */
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d1117 100%);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  position: fixed;
   top: 0;
-  left: -280px; /* Start off-screen (adjust width as needed) */
-  width: 280px; /* Fixed width for the sidebar */
-  height: 100vh; /* Full viewport height */
-  z-index: 1040; /* Below Bootstrap modal backdrop (1050), above most content */
-  transition: left 0.3s ease-in-out; /* Animate the slide-in/out */
-  padding-top: 1rem; /* Remove py-4 px-3 from inline/component if they exist */
+  left: -320px; /* Slightly wider for better proportions */
+  width: 320px;
+  height: 100vh;
+  z-index: 1040;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
 }
 
 #sidebarMenu.open {
-  left: 0; /* Slide into view */
+  left: 0;
 }
 
 .sidebar-sticky {
-  /* padding-top: 1rem !important; /* This was here, ensure it's still desired or remove if #sidebarMenu padding is enough */
-  /* The position-sticky might not be needed if the whole sidebar is fixed and scrolls internally */
   height: 100%;
-  overflow-y: auto; /* Allow scrolling within the sidebar if content exceeds height */
+  overflow-y: auto;
+  padding: 2rem 1.5rem;
 }
 
-.sidebar .nav-link {
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-  border-radius: 0.25rem;
-  margin-bottom: 0.5rem;
-  display: flex; /* For aligning icon and label */
-  align-items: center; /* Align icon and label vertically */
+/* Modern close button */
+.sidebar-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 1.5rem;
+  padding: 0.5rem !important;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.sidebar .nav-link i {
-  margin-right: 0.75rem; /* Space between icon and label */
-  font-size: 1.25rem; /* Consistent icon size */
+.sidebar-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  transform: rotate(90deg);
 }
 
-/* .sidebar .nav-link .feather was old, replaced by general i styling */
-
-.sidebar .nav-link.active,
-.sidebar .nav-link:hover {
-  color: #ffffff;
-  background-color: #333333;
-}
-
-/* Styles for item labels - they are always visible now when sidebar is open */
-.sidebar-item-label {
-  /* display: none; /* This was for the old collapsed state, remove */
-}
-
-/* Remove old collapsible styles */
-/* #sidebarMenu.collapsed ... rules removed */
-
-/* Sidebar Toggler Button Styling (the one inside the sidebar, if kept) */
-.sidebar-toggler {
-  font-size: 1.25rem;
+.close-icon {
+  font-size: 2rem;
   line-height: 1;
-  padding: 0.25rem 0.5rem;
-  opacity: 1;
-  transition: opacity 0.15s linear;
-  /* This button might be repositioned or primarily a close button now */
+}
+
+/* Modern navigation styling */
+.modern-nav {
+  margin-top: 3rem;
+  gap: 0.5rem;
+}
+
+.modern-nav-link {
+  position: relative;
+  padding: 1rem 1.5rem !important;
+  margin-bottom: 0.25rem;
+  border-radius: 12px;
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.75) !important;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none !important;
+  display: block;
+  overflow: hidden;
+}
+
+.modern-nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.modern-nav-link:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(8px);
+}
+
+.modern-nav-link:hover::before {
+  left: 100%;
+}
+
+.modern-nav-link.active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(4px);
+}
+
+.nav-text {
+  position: relative;
+  z-index: 1;
+  text-transform: lowercase;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 300;
+}
+
+/* Active indicator */
+.modern-nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: linear-gradient(to bottom, #bb86fc, #6200ea);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Smooth scrollbar for sidebar */
+.sidebar-sticky::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-sticky::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-sticky::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.sidebar-sticky::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* --- Main Content Wrapper --- */

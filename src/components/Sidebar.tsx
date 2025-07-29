@@ -12,61 +12,49 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
   const pathname = usePathname(); // Get current path
 
   const navItems = [
-    { href: '/', label: 'dreamland', icon: 'bi-house-fill' },
-    // Point to the static authorization file in /public
-    { href: '/authorization1.html', label: 'discography', icon: 'bi-music-note-beamed' }, 
-    { href: '/videos', label: 'videos', icon: 'bi-camera-video-fill' }, // We'll create this page later
-    { href: '/youtube', label: 'youtube', icon: 'bi-youtube' }, // Added YouTube page
-    { href: '/contact', label: 'contact', icon: 'bi-envelope-fill' }, // We'll create this page later
-    { href: '/shop', label: 'shop', icon: 'bi-cart-fill' }, // We'll create this page later
+    { href: '/', label: 'dreamland' },
+    { href: '/authorization1.html', label: 'discography' }, 
+    { href: '/videos', label: 'videos' },
+    { href: '/youtube', label: 'youtube' },
+    { href: '/contact', label: 'contact' },
+    { href: '/shop', label: 'shop' },
   ];
 
   return (
     <nav
       id="sidebarMenu"
-      className={`sidebar ${isOpen ? 'open' : ''}`} // Removed col classes, d-md-block. Uses .open for visibility.
+      className={`sidebar ${isOpen ? 'open' : ''}`}
     >
       <div className="position-sticky py-4 px-3 sidebar-sticky">
-        {/* Simplified Toggle Button - primarily acts as a CLOSE button now inside the sidebar */}
-        {/* This button could be styled as a prominent 'X' at the top of the sidebar */}
+        {/* Modern close button */}
         <button 
-          className="btn btn-link sidebar-toggler mb-3" // Simplified classes, always visible if sidebar is open
+          className="btn btn-link sidebar-close-btn mb-4" 
           onClick={onToggle} 
           aria-label="Close sidebar"
-          // Icon changes to 'X' when open, or could always be 'X' as it's a close button now
         >
-          <i className="bi bi-x-lg"></i> {/* Changed to X icon, bi-x-lg for larger X */}
+          <span className="close-icon">&times;</span>
         </button>
-        
-        {/* The d-md-none toggle button can be removed if we have a global toggle and this close button */}
-        {/* For now, I am removing the mobile-specific toggle that was inside here */}
 
-        <ul className="nav flex-column">
+        <ul className="nav flex-column modern-nav">
           {navItems.map((item) => (
             <li className="nav-item" key={item.href}>
               {item.href.startsWith('/') && !item.href.endsWith('.html') ? (
                 <Link
-                  className={`nav-link ${pathname === item.href ? 'active' : ''}`}
+                  className={`nav-link modern-nav-link ${pathname === item.href ? 'active' : ''}`}
                   aria-current={pathname === item.href ? 'page' : undefined}
                   href={item.href}
-                  title={item.label}
-                  style={{ display: 'inline-block', width: '100%' }}
-                  onClick={isOpen ? onToggle : undefined} // Optional: close sidebar on nav item click when open
+                  onClick={isOpen ? onToggle : undefined}
                 >
-                  {item.icon && <i className={`${item.icon} me-2`}></i>} {/* Icon styling simplified, label always shown now */}
-                  <span className="sidebar-item-label">{item.label}</span>
-                 </Link>
+                  <span className="nav-text">{item.label}</span>
+                </Link>
               ) : (
                 <a
-                  className={`nav-link ${item.label === 'discography' ? (pathname.startsWith('/discography') ? 'active' : '') : ''}`}
+                  className={`nav-link modern-nav-link ${item.label === 'discography' ? (pathname.startsWith('/discography') ? 'active' : '') : ''}`}
                   href={item.href}
-                  title={item.label}
-                  style={{ display: 'inline-block', width: '100%' }}
-                  onClick={isOpen ? onToggle : undefined} // Optional: close sidebar on nav item click when open
+                  onClick={isOpen ? onToggle : undefined}
                 > 
-                  {item.icon && <i className={`${item.icon} me-2`}></i>} {/* Icon styling simplified */}
-                  <span className="sidebar-item-label">{item.label}</span>
-                 </a>
+                  <span className="nav-text">{item.label}</span>
+                </a>
               )}
             </li>
           ))}
